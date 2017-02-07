@@ -1,0 +1,39 @@
+@font-face {
+  font-family: 'SafeCloud-icon';
+  src:  url('fonts/SafeCloud-icon.eot?jfri7t');
+  src:  url('fonts/SafeCloud-icon.eot?jfri7t#iefix') format('embedded-opentype'),
+    url('fonts/SafeCloud-icon.ttf?jfri7t') format('truetype'),
+    url('fonts/SafeCloud-icon.woff?jfri7t') format('woff'),
+    url('fonts/SafeCloud-icon.svg?jfri7t#SafeCloud-icon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'SafeCloud-icon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-home3:before {
+  content: "\e902";
+}
+.icon-newspaper:before {
+  content: "\e904";
+}
+.icon-user:before {
+  content: "\e971";
+}
+.icon-list:before {
+  content: "\e9ba";
+}
+
