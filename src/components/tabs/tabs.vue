@@ -12,7 +12,7 @@
       </mt-tab-container-item>
 
       <mt-tab-container-item :id="tabsList[2].id">
-        <v-notice></v-notice>
+        <v-address></v-address>
       </mt-tab-container-item>
 
       <mt-tab-container-item :id="tabsList[3].id">
