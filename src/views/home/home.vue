@@ -9,7 +9,18 @@
         <!--安全得分-->
         <div class="fen-wrap">
           <router-link to="/score">
-            <div class="total-fen-wrap">
+            <div class="fen-company">华润新鸿基房地产（无锡）有限公司(万象城)</div>
+            <div class="fen-value">90</div>
+            <div class="fen-level">优秀</div>
+            <div class="fen-jb">击败了78%的同类型单位</div>
+            <ul class="fen-level-view">
+              <li class="fen-level-cell">
+                <span>0</span>
+                <i class="level-0"></i>
+                <span>60</span>
+              </li>
+            </ul>
+            <!--<div class="total-fen-wrap">
               <span class="total-name">安全得分</span>
               <div class="total-value"><span>90</span>优秀</div>
             </div>
@@ -26,7 +37,7 @@
               <mt-progress :value="20" :bar-height="5">
                 <div slot="end">28/30</div>
               </mt-progress>
-            </div>
+            </div>-->
           </router-link>
         </div>
         <!--今日巡查-->

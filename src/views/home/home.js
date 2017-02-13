@@ -7,7 +7,7 @@ export default {
         }
     },
     methods: {
-        
+
     },
     components: {
         'mt-progress': Progress,
@@ -17,3 +17,5 @@ export default {
         'mt-tab-container-item': TabContainerItem
     }
 }
+
+
