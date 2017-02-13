@@ -5,6 +5,3 @@
 </template>
 
 <script src="./enter.js"></script>
-<style lang="less" scoded>
-
-</style>
