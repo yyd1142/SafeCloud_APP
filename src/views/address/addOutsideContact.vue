@@ -5,11 +5,12 @@
         <mt-button icon="back"></mt-button>
       </router-link>
     </mt-header>
-    <div class="page-wrap add-ins-contact">
+    <div class="page-wrap add-ots-contact">
       <div class="form-wrap">
         <mt-field class="item" label="姓名" v-model="formData.name"></mt-field>
         <mt-field class="item" label="公司" v-model="formData.cpy"></mt-field>
-        <mt-field class="item" label="电话" v-model="formData.tel" type="tel"></mt-field>
+        <mt-field class="item" label="电话" v-model="formData.tel"></mt-field>
+        <popup-picker title="test" :value="contactTeams"></popup-picker>
       </div>
       <div class="submit">
         <mt-button type="primary" :disabled="!formValid" @click="submitForm">确认</mt-button>
@@ -19,7 +20,7 @@
 </template>
 
 <style lang="less" rel="stylesheet/less">
-  .add-ins-contact {
+  .add-ots-contact {
     position: relative;
     min-height: 400px;
     .form-wrap {
@@ -123,10 +124,16 @@
     ]
     }
   ];
+  import PopupPicker from '../../components/PopupPicker/PopupPicker.vue';
   export default{
     data() {
       return {
-        contactTeams: [],
+        contactTeams: [
+          {
+            flex: 1,
+            values: ['tst3','tst','dsad'],
+          }
+        ],
         formData: {
           name: '',
           cpy: '',
@@ -169,7 +176,9 @@
         }
       }
     },
-    components: {}
+    components: {
+      PopupPicker
+    }
   }
 </script>
 

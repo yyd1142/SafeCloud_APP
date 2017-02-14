@@ -10,6 +10,8 @@ import addInsideContact from 'views/address/addInsideContact.vue';
 import addOutsideContact from 'views/address/addOutsideContact.vue';
 import addDepartment from 'views/address/addDepartment.vue';
 import editDepartment from 'views/address/editDepartment.vue';
+import personData from 'views/person/personData.vue';
+import config from 'views/config/config.vue';
 
 const routers = {
   mode: 'history',
@@ -70,6 +72,14 @@ const routers = {
     {
       path: '/edit_department',
       component: editDepartment
+    },
+    {
+      path: '/person_data',
+      component: personData
+    },
+    {
+      path: '/config',
+      component: config
     }
   ]
 };

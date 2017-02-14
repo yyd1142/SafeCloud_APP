@@ -10,9 +10,18 @@
         <mt-field class="item" label="姓名" v-model="formData.name"></mt-field>
         <mt-field class="item" label="公司" v-model="formData.cpy"></mt-field>
         <mt-field class="item" label="电话" v-model="formData.tel" type="tel"></mt-field>
-        <select class="sel" v-model="formData.team">
-          <option v-for="(item,index) in contactTeams" :value="item" :disabled="index===0">{{item}}</option>
-        </select>
+        <div class="sel-wrap" @click="ctlPopup(true)">
+          <mt-cell title="部门" :value="formData.team" is-link></mt-cell>
+        </div>
+      </div>
+      <div class="popup-wrap">
+        <mt-popup v-model="popupShow" position="bottom">
+          <div class="popup-btn">
+            <span class="btn" @click="ctlPopup(false)">取消</span>
+            <span class="btn btn-yes" @click="pickTeam">确定</span>
+          </div>
+          <mt-picker :slots="contactTeams" @change="onValuesChange"></mt-picker>
+        </mt-popup>
       </div>
       <div class="submit">
         <mt-button type="primary" :disabled="!formValid" @click="submitForm">确认</mt-button>
@@ -27,15 +36,32 @@
     min-height: 400px;
     .form-wrap {
       width: 100%;
-      /*text-align: center;*/
       .item {
         width: 100%;
       }
-      .sel {
+      .sel-wrap {
+        .mint-cell-title {
+          flex: none;
+          width: 105px;
+          .mint-cell-text {
+            vertical-align: baseline;
+          }
+        }
+      }
+    }
+    .popup-wrap {
+      .popup-btn {
+        .btn {
+          display: inline-block;
+          padding: 15px;
+        }
+        .btn-yes {
+          float: right;
+          color: #0089dc;
+        }
+      }
+      .mint-popup {
         width: 100%;
-        height: 35px;
-        border-radius: 10px;
-        font-size: 14px;
       }
     }
     .submit {
@@ -126,17 +152,26 @@
     ]
     }
   ];
+
+
   export default{
     data() {
       return {
-        contactTeams: [],
+        formValid: false,
+        popupShow: false,
+        currentTeam: '',
+        contactTeams: [
+          {
+            flex: 1,
+            values: [],
+          }
+        ],
         formData: {
           name: '',
           cpy: '',
           tel: '',
           team: '请选择'
-        },
-        formValid: false
+        }
       }
     },
     mounted() {
@@ -152,9 +187,9 @@
     },
     methods: {
       getData() {
-        this.contactTeams.push('请选择');
+//        this.contactTeams.push('请选择');
         NAMES.forEach(data => {
-          this.contactTeams.push(data.team);
+          this.contactTeams[0].values.push(data.team);
           data.member.forEach(member => {
             if (member.id == this.$route.params.pid) {
               this.formData.name = member.name;
@@ -180,6 +215,16 @@
           console.log('提交新增联系人数据');
           this.$router.push('/enter?name=address');
         }
+      },
+      ctlPopup(bool){
+        this.popupShow = bool;
+      },
+      onValuesChange(picker, val){
+        this.currentTeam = val[0];
+      },
+      pickTeam(){
+        this.formData.team = this.currentTeam;
+        this.popupShow = false
       }
     },
     components: {}
