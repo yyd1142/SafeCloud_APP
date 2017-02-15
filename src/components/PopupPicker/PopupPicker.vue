@@ -50,7 +50,6 @@
       return {
         popupShow: false,
         currentValue: '',
-        formValue: '',
         valueList: [
           {
             flex: 1,
@@ -60,11 +59,10 @@
       }
     },
     props: [
-      'title', 'values', 'defaultValue'
+      'title', 'values', 'formValue'
     ],
     mounted() {
       this.valueList = this.values;
-      this.formValue = this.defaultValue;
     },
     methods: {
       ctlPopup(bool){
@@ -74,8 +72,7 @@
         this.currentValue = val[0];
       },
       pickValue(){
-        this.formValue = this.currentValue;
-        this.$emit('get', this.formValue);
+        this.$emit('get', this.currentValue);
         this.popupShow = false
       }
     }
@@ -83,4 +80,4 @@
 </script>
 
 <!--父组件使用：-->
-<!--<popup-picker title="部门" :value="contactTeams" :defaultValue="formData.team" v-on:get="pickTeam"></popup-picker>-->
+<!--<popup-picker title="部门" :value="contactTeams" :formValue="formData.team" v-on:get="pickTeam"></popup-picker>-->

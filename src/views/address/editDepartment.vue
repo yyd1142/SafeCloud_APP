@@ -9,9 +9,9 @@
     <div class="page-wrap edit-department">
       <div class="form-wrap">
         <mt-field class="item" label="部门名称" required v-model="formData.teamName"></mt-field>
-        <popup-picker title="部门管理员" :values="managerList" :defaultValue="formData.manager" v-on:get="pickManager"></popup-picker>
+        <popup-picker title="部门管理员" :values="managerList" :formValue="formData.manager" v-on:get="pickManager"></popup-picker>
         <mt-field class="item" label="人数限制" v-model="formData.limitNumber" type="number"></mt-field>
-        <popup-picker title="权限限制" :values="powerList" :defaultValue="formData.power" v-on:get="pickPower"></popup-picker>
+        <popup-picker title="权限限制" :values="powerList" :formValue="formData.power" v-on:get="pickPower"></popup-picker>
       </div>
       <div class="member-list-wrap">
         <h3 class="title">成员</h3>

@@ -10,7 +10,7 @@
         <mt-field class="item" label="姓名" v-model="formData.name"></mt-field>
         <mt-field class="item" label="公司" v-model="formData.cpy"></mt-field>
         <mt-field class="item" label="电话" v-model="formData.tel" type="tel"></mt-field>
-        <popup-picker title="部门" :values="contactTeams" :defaultValue="formData.team" v-on:get="pickTeam"></popup-picker>
+        <popup-picker title="部门" :values="contactTeams" :formValue="formData.team" v-on:get="pickTeam"></popup-picker>
       </div>
       <div class="submit">
         <mt-button type="primary" :disabled="!formValid" @click="submitForm">确认</mt-button>
