@@ -12,6 +12,10 @@ import addDepartment from 'views/address/addDepartment.vue';
 import editDepartment from 'views/address/editDepartment.vue';
 import personData from 'views/person/personData.vue';
 import config from 'views/config/config.vue';
+import messageDetail from 'views/message/info.vue';
+import noticeList from 'views/notice/noticeList.vue';
+import noticeDetail from 'views/notice/info.vue';
+import basicInformation from 'views/basicInfomation/basicInformation.vue'
 
 const routers = {
   mode: 'history',
@@ -28,6 +32,10 @@ const routers = {
     {
       path: '/message',
       component: message
+    },
+    {
+      path: '/message/:pid',
+      component: messageDetail
     },
     {
       path: '/xuncha',
@@ -80,6 +88,18 @@ const routers = {
     {
       path: '/config',
       component: config
+    },
+    {
+      path: '/notice',
+      component: noticeList
+    },
+    {
+      path: '/notice/:pid',
+      component: noticeDetail
+    },
+    {
+      path: '/basic_info',
+      component: basicInformation
     }
   ]
 };

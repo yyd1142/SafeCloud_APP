@@ -1,17 +1,17 @@
 <template>
     <div>
-        <mt-header fixed title="消息列表">
+        <mt-header fixed title="通知公告">
             <router-link to="/enter" slot="left">
                 <mt-button icon="back"></mt-button>
             </router-link>
         </mt-header>
         <div class="page-wrap">
-            <mt-cell v-for="item in systemMessages" :title="item.title" :value="item.time" :to="'/message/' + item.id" is-link/>
+            <mt-cell v-for="item in notices" :title="item.title" :label="'来源：' + item.from" :value="item.time" :to="'/notice/' + item.id" is-link/>
         </div>
     </div>
 </template>
 
-<script src="./message.js"></script>
+<script src="./notice.js"></script>
 
 <style lang="less" scoded>
 
