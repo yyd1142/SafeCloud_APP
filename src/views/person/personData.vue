@@ -36,7 +36,7 @@
       .avatar {
         padding:5px;
         border: 1px solid #ccc;
-        border-radius: 10px;
+        border-radius: 4px;
       }
     }
 

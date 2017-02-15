@@ -80,4 +80,4 @@
 </script>
 
 <!--父组件使用：-->
-<!--<popup-picker title="部门" :value="contactTeams" :formValue="formData.team" v-on:get="pickTeam"></popup-picker>-->
+<!--<popup-picker title="部门" :values="contactTeams" :formValue="formData.team" v-on:get="pickTeam"></popup-picker>-->

@@ -27,12 +27,6 @@
       .item {
         width: 100%;
       }
-      .sel {
-        width: 100%;
-        height: 35px;
-        border-radius: 10px;
-        font-size: 14px;
-      }
     }
     .submit {
       position: absolute;

@@ -1,9 +1,15 @@
 import enter from './views/enter/enter.vue';
+import score from './views/score/score.vue';
 import message from './views/message/message.vue';
 import xuncha from './views/xuncha/xuncha.vue';
 import xunchaInfo from './views/xuncha/info.vue';
+import xunchaList from './views/xuncha/XunchaList.vue';
 import zhiban from './views/zhiban/zhiban.vue';
-import score from './views/score/score.vue';
+import zhibanList from './views/zhiban/ZhibanList.vue';
+import jianchaList from './views/jiancha/JianchaList.vue';
+import weixiuList from 'src/views/weixiu/WeixiuList.vue';
+import baoyangList from 'src/views/baoyang/BaoyangList.vue';
+import jianceList from 'src/views/jiance/JianceList.vue';
 import evaluation from 'views/address/evaluation.vue';
 import addressDetail from 'views/address/addressDetail.vue';
 import addInsideContact from 'views/address/addInsideContact.vue';
@@ -38,8 +44,32 @@ const routers = {
       component: xunchaInfo
     },
     {
+      path: '/xuncha_list',
+      component: xunchaList
+    },
+    {
       path: '/zhiban',
       component: zhiban
+    },
+    {
+      path: '/zhiban_list',
+      component: zhibanList
+    },
+    {
+      path: '/jiancha_list',
+      component: jianchaList
+    },
+    {
+      path: '/weixiu_list',
+      component: weixiuList
+    },
+    {
+      path: '/baoyang_list',
+      component: baoyangList
+    },
+    {
+      path: '/jiance_list',
+      component: jianceList
     },
     {
       path: '/score',
