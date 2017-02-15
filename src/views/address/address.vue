@@ -8,7 +8,6 @@
         <mt-button>部门</mt-button>
       </router-link>
     </mt-header>
-    <!--<mt-search v-model="searchValue"></mt-search>-->
     <div class="page-wrap address-wrap">
       <mt-navbar v-model="addressClass" class="navbar-wrap" fixed>
         <mt-tab-item id="1">内部</mt-tab-item>
