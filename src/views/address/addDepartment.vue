@@ -11,29 +11,9 @@
     <div class="page-wrap add-department">
       <div class="form-wrap">
         <mt-field class="item" label="部门名称" required v-model="formData.teamName"></mt-field>
-        <div class="sel-wrap" @click="ctlManagerPopup(true)">
-          <mt-cell title="部门管理员" :value="formData.manager" is-link></mt-cell>
-        </div>
+        <popup-picker title="部门管理员" :values="managerList" :formValue="formData.manager" v-on:get="pickManager"></popup-picker>
         <mt-field class="item" label="人数限制" v-model="formData.limitNumber" type="number"></mt-field>
-        <div class="sel-wrap" @click="ctlPowerPopup(true)">
-          <mt-cell title="权限限制" :value="formData.power" is-link></mt-cell>
-        </div>
-      </div>
-      <div class="popup-wrap">
-        <mt-popup v-model="managerPopupShow" position="bottom">
-          <div class="popup-btn">
-            <span class="btn" @click="ctlManagerPopup(false)">取消</span>
-            <span class="btn btn-yes" @click="pickManager">确定</span>
-          </div>
-          <mt-picker :slots="managerList" @change="managerValuesChange"></mt-picker>
-        </mt-popup>
-        <mt-popup v-model="powerPopupShow" position="bottom">
-          <div class="popup-btn">
-            <span class="btn" @click="ctlPowerPopup(false)">取消</span>
-            <span class="btn btn-yes" @click="pickPower">确定</span>
-          </div>
-          <mt-picker :slots="powerList" @change="powerValuesChange"></mt-picker>
-        </mt-popup>
+        <popup-picker title="权限限制" :values="powerList" :formValue="formData.power" v-on:get="pickPower"></popup-picker>
       </div>
       <div class="submit">
         <mt-button type="primary" :disabled="!formValid" @click="submitForm">确认</mt-button>
@@ -49,30 +29,6 @@
     .form-wrap {
       width: 100%;
       .item {
-        width: 100%;
-      }
-      .sel-wrap {
-        .mint-cell-title {
-          flex: none;
-          width: 105px;
-          .mint-cell-text {
-            vertical-align: baseline;
-          }
-        }
-      }
-    }
-    .popup-wrap {
-      .popup-btn {
-        .btn {
-          display: inline-block;
-          padding: 15px;
-        }
-        .btn-yes {
-          float: right;
-          color: #0089dc;
-        }
-      }
-      .mint-popup {
         width: 100%;
       }
     }
@@ -166,24 +122,21 @@
   ];
   var manager = ['Tom', 'Rose', 'Candy', 'Tim', 'Tom', 'Rose', 'Candy', 'Tim'];
 
+  import PopupPicker from '../../components/PopupPicker/PopupPicker.vue';
   export default{
     data() {
       return {
         formValid: false,
-        managerPopupShow: false,
-        powerPopupShow: false,
-        currentManager: '',
-        currentPower: '',
         managerList: [
           {
             flex: 1,
-            values: [],
+            values: []
           }
         ],
         powerList: [
           {
             flex: 1,
-            values: ['管理员', '安全员'],
+            values: ['管理员', '安全员']
           }
         ],
         formData: {
@@ -226,28 +179,17 @@
           this.$router.push('/enter?name=address');
         }
       },
-      ctlManagerPopup(bool){
-        this.managerPopupShow = bool;
+      pickManager(val){
+        this.formData.manager = val;
       },
-      ctlPowerPopup(bool){
-        this.powerPopupShow = bool;
-      },
-      managerValuesChange(picker, val){
-        this.currentManager = val[0];
-      },
-      powerValuesChange(picker, val){
-        this.currentPower = val[0];
-      },
-      pickManager(){
-        this.formData.manager = this.currentManager;
-        this.managerPopupShow = false;
-      },
-      pickPower(){
-        this.formData.power = this.currentPower;
-        this.powerPopupShow = false;
+      pickPower(val){
+        this.formData.power = val;
+        console.log(this.formData);
       }
     },
-    components: {}
+    components: {
+      PopupPicker
+    }
   }
 </script>
 

@@ -10,7 +10,6 @@
         <mt-field class="item" label="姓名" v-model="formData.name"></mt-field>
         <mt-field class="item" label="公司" v-model="formData.cpy"></mt-field>
         <mt-field class="item" label="电话" v-model="formData.tel"></mt-field>
-        <popup-picker title="test" :value="contactTeams"></popup-picker>
       </div>
       <div class="submit">
         <mt-button type="primary" :disabled="!formValid" @click="submitForm">确认</mt-button>
@@ -25,15 +24,8 @@
     min-height: 400px;
     .form-wrap {
       width: 100%;
-      /*text-align: center;*/
       .item {
         width: 100%;
-      }
-      .sel {
-        width: 100%;
-        height: 35px;
-        border-radius: 10px;
-        font-size: 14px;
       }
     }
     .submit {
@@ -124,16 +116,10 @@
     ]
     }
   ];
-  import PopupPicker from '../../components/PopupPicker/PopupPicker.vue';
+
   export default{
     data() {
       return {
-        contactTeams: [
-          {
-            flex: 1,
-            values: ['tst3','tst','dsad'],
-          }
-        ],
         formData: {
           name: '',
           cpy: '',
@@ -143,7 +129,7 @@
       }
     },
     mounted() {
-      this.getTeams();
+
     },
     watch: {
       formData: {
@@ -154,11 +140,6 @@
       }
     },
     methods: {
-      getTeams() {
-        NAMES.forEach(data => {
-          this.contactTeams.push(data.team);
-        })
-      },
       validForm() {
         let name = this.formData.name;
         let cpy = this.formData.cpy;
@@ -177,7 +158,6 @@
       }
     },
     components: {
-      PopupPicker
     }
   }
 </script>

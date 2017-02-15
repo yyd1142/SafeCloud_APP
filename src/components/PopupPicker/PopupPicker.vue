@@ -1,7 +1,7 @@
 <template>
   <div class="popup-picker">
     <div class="sel-wrap" @click="ctlPopup(true)">
-      <mt-cell :title="title" is-link></mt-cell>
+      <mt-cell :title="title" :value="formValue" is-link></mt-cell>
     </div>
     <div class="popup-wrap">
       <mt-popup v-model="popupShow" position="bottom">
@@ -53,32 +53,31 @@
         valueList: [
           {
             flex: 1,
-            values: ['tom', 'rose'],
+            values: [],
           }
         ]
       }
     },
     props: [
-      'title', 'value'
+      'title', 'values', 'formValue'
     ],
     mounted() {
-      this.valueList = this.value;
+      this.valueList = this.values;
     },
     methods: {
       ctlPopup(bool){
         this.popupShow = bool;
       },
       onValuesChange(picker, val){
-        console.log(val);
         this.currentValue = val[0];
       },
       pickValue(){
-//            this.formData.team = this.currentTeam;
-        console.log(this.currentTValue);
+        this.$emit('get', this.currentValue);
         this.popupShow = false
       }
     }
   }
 </script>
 
-
+<!--父组件使用：-->
+<!--<popup-picker title="部门" :values="contactTeams" :formValue="formData.team" v-on:get="pickTeam"></popup-picker>-->
