@@ -4,6 +4,9 @@
       <router-link to="/enter?name=mission" slot="left">
         <mt-button icon="back"></mt-button>
       </router-link>
+      <router-link to="/add_xuncha/date" slot="right">
+        新增
+      </router-link>
     </mt-header>
     <div class="page-wrap xuncha-page-wrap">
       <div class="sel-wrap">
@@ -45,9 +48,9 @@
 
 <style lang="less" rel="stylesheet/less">
   .xuncha-page-wrap {
-    .sel-wrap{
-      display:flex;
-      .sel{
+    .sel-wrap {
+      display: flex;
+      .sel {
         flex: 1;
         height: 30px;
         font-size: 14px;
@@ -56,9 +59,9 @@
       }
     }
     .list-wrap {
-      .list{
-        padding:0;
-        margin:0;
+      .list {
+        padding: 0;
+        margin: 0;
         .item {
           display: flex;
           padding: 10px 15px;
@@ -68,7 +71,7 @@
           }
           .state {
             flex: 0 0 100px;
-            margin-top:10px;
+            margin-top: 10px;
             &.succ {
               color: #259b24;
             }
@@ -89,7 +92,9 @@
 <script>
   export default{
     data() {
-      return {}
+      return {
+        popupVisible: false
+      }
     },
     mounted() {
 
