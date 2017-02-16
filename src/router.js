@@ -21,6 +21,16 @@ import addDepartment from 'views/address/addDepartment.vue';
 import editDepartment from 'views/address/editDepartment.vue';
 import personData from 'views/person/personData.vue';
 import config from 'views/config/config.vue';
+import messageDetail from 'views/message/info.vue';
+import noticeList from 'views/notice/noticeList.vue';
+import noticeDetail from 'views/notice/info.vue';
+import basicInformation from 'views/basicInfomation/basicInformation.vue'
+import trainList from 'views/train/train.vue';
+import pastScore from 'views/train/pastScore.vue';
+import exam from 'views/train/exam.vue';
+import startExam from 'views/train/startExam.vue';
+import hiddenDangerList from 'views/hiddenDanger/hiddenDangerList.vue';
+import hiddenDangerDetail from 'views/hiddenDanger/info.vue';
 
 const routers = {
   mode: 'history',
@@ -37,6 +47,10 @@ const routers = {
     {
       path: '/message',
       component: message
+    },
+    {
+      path: '/message/:pid',
+      component: messageDetail
     },
     {
       path: '/xuncha',
@@ -125,6 +139,42 @@ const routers = {
     {
       path: '/config',
       component: config
+    },
+    {
+      path: '/notice',
+      component: noticeList
+    },
+    {
+      path: '/notice/:pid',
+      component: noticeDetail
+    },
+    {
+      path: '/basic_info',
+      component: basicInformation
+    },
+    {
+      path: '/train',
+      component: trainList
+    },
+    {
+      path: '/past_score',
+      component: pastScore
+    },
+    {
+      path: '/exam/:pid',
+      component: exam
+    },
+    {
+      path: '/start_exam',
+      component: startExam
+    },
+    {
+      path: '/hidden_danger',
+      component: hiddenDangerList
+    },
+    {
+      path: '/hidden_danger/:pid',
+      component: hiddenDangerDetail
     }
   ]
 };

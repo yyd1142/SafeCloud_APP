@@ -42,4 +42,4 @@
 
 <script src="./xuncha.js"></script>
 
-<style lang="less" src="./xuncha.less" scoded></style>
+<style lang="less" src="./xuncha.less" scoped></style>

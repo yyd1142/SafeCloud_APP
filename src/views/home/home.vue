@@ -13,53 +13,13 @@
             <div class="fen-value">90</div>
             <div class="fen-level">优秀</div>
             <div class="fen-jb">击败了78%的同类型单位</div>
-            <ul class="fen-level-view">
-              <li class="fen-level-cell">
-                <span>0</span>
-                <i class="level-0"></i>
-                <span>60</span>
-              </li>
-            </ul>
-            <!--<div class="total-fen-wrap">
-              <span class="total-name">安全得分</span>
-              <div class="total-value"><span>90</span>优秀</div>
-            </div>
-            <div class="fen-item">
-              建筑物火灾风险得分
-              <mt-progress :value="20" :bar-height="5">
-                <div slot="end">28/30</div>
-              </mt-progress>
-              建筑物火灾风险得分
-              <mt-progress :value="20" :bar-height="5">
-                <div slot="end">28/30</div>
-              </mt-progress>
-              建筑物火灾风险得分
-              <mt-progress :value="20" :bar-height="5">
-                <div slot="end">28/30</div>
-              </mt-progress>
-            </div>-->
           </router-link>
-        </div>
-        <!--今日巡查-->
-        <div class="today-wrap">
-          <div class="today-xuncha">
-            <router-link to="/xuncha">
-              <i class="icon iconfont icon-text"></i>
-              <span>今日巡查</span>
-            </router-link>
-          </div>
-          <div class="today-zhiban">
-            <router-link to="/zhiban">
-              <i class="icon iconfont icon-browse"></i>
-              <span>今日值班</span>
-            </router-link>
-          </div>
         </div>
         <!--功能-->
         <ul class="actions-table-view">
-          <li class="actions-table-cell" v-for="item in 6">
-            <i class="icon iconfont icon-text"></i>
-            <span>视频监控</span>
+          <li class="actions-table-cell" v-for="item in actions" @click="routerLink(item)">
+             <i class="icon iconfont" :class="item.class"></i>
+              <span v-text="item.text"></span>
           </li>
         </ul>
         <!--TAB-->
