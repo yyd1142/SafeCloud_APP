@@ -56,4 +56,4 @@ export default {
 }
 </script>
 
-<style lang="less" src="./zhiban.less" scoded></style>
+<style lang="less" src="./zhiban.less" scoped></style>

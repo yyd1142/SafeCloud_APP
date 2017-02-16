@@ -6,13 +6,13 @@
             </router-link>
         </mt-header>
         <div class="page-wrap">
-            <mt-cell v-for="item in systemMessages" :title="item.title" :value="item.time" :to="'/message/' + item.id" is-link/>
+            <mt-cell v-for="item in systemMessages" :title="item.title" :value="item.time" :to="'/message/' + item.id" is-link></mt-cell>
         </div>
     </div>
 </template>
 
 <script src="./message.js"></script>
 
-<style lang="less" scoded>
+<style lang="less" scoped>
 
 </style>

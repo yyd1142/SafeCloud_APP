@@ -6,13 +6,13 @@
             </router-link>
         </mt-header>
         <div class="page-wrap">
-            <mt-cell v-for="item in notices" :title="item.title" :label="'来源：' + item.from" :value="item.time" :to="'/notice/' + item.id" is-link/>
+            <mt-cell v-for="item in notices" :title="item.title" :label="'来源：' + item.from" :value="item.time" :to="'/notice/' + item.id" is-link></mt-cell>
         </div>
     </div>
 </template>
 
 <script src="./notice.js"></script>
 
-<style lang="less" scoded>
+<style lang="less" scoped>
 
 </style>

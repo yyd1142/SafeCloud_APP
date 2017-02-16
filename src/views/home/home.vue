@@ -17,11 +17,9 @@
         </div>
         <!--功能-->
         <ul class="actions-table-view">
-          <li class="actions-table-cell" v-for="item in actions">
-            <router-link :to="{ path: item.url }">
-              <i class="icon iconfont" :class="item.class"></i>
+          <li class="actions-table-cell" v-for="item in actions" @click="routerLink(item)">
+             <i class="icon iconfont" :class="item.class"></i>
               <span v-text="item.text"></span>
-            </router-link>
           </li>
         </ul>
         <!--TAB-->

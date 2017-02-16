@@ -26,7 +26,7 @@
 
 </script>
 
-<style lang="less" scoded>
+<style lang="less" scoped>
     .basic-icon {
         margin: 6px 6px 0 10px;
         float: left;
