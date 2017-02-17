@@ -4,7 +4,8 @@ import message from './views/message/message.vue';
 import xuncha from './views/xuncha/xuncha.vue';
 import xunchaInfo from './views/xuncha/info.vue';
 import xunchaList from './views/xuncha/XunchaList.vue';
-import addXuncha from './views/xuncha/AddXuncha.vue';
+import addXunchaPage from './views/xuncha/AddXunchaPage.vue';
+import addXunchaBase from './views/xuncha/AddXunchaBase.vue';
 import addXunchaDetail from './views/xuncha/AddXunchaDetail.vue';
 import addXunchaDevice from './views/xuncha/AddXunchaDevice.vue';
 import zhiban from './views/zhiban/zhiban.vue';
@@ -65,8 +66,12 @@ const routers = {
       component: xunchaList
     },
     {
-      path: '/add_xuncha/:type',
-      component: addXuncha
+      path: '/add_xuncha_page',
+      component: addXunchaPage
+    },
+    {
+      path: '/add_xuncha_base',
+      component: addXunchaBase
     },
     {
       path: '/add_xuncha_detail',

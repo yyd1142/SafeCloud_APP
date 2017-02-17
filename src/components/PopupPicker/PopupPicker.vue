@@ -69,7 +69,12 @@
         this.popupShow = bool;
       },
       onValuesChange(picker, val){
-        this.currentValue = val[0];
+        if (val.length === 1) {
+          this.currentValue = val[0];
+        } else {
+          this.currentValue = val[0];
+//          console.log(val);
+        }
       },
       pickValue(){
         this.$emit('get', this.currentValue);
