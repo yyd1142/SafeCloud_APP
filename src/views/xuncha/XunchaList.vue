@@ -4,7 +4,7 @@
       <router-link to="/enter?name=mission" slot="left">
         <mt-button icon="back"></mt-button>
       </router-link>
-      <router-link to="/add_xuncha/date" slot="right">
+      <router-link to="/add_xuncha_page" slot="right">
         新增
       </router-link>
     </mt-header>

@@ -5,19 +5,10 @@
         <mt-button icon="back"></mt-button>
       </router-link>
     </mt-header>
-    <div class="page-wrap add-xuncha-wrap">
+    <div class="page-wrap add-xuncha-base-wrap">
       <div class="form-wrap">
         <popup-picker title="选择建筑" :values="selData.buildList" :formValue="formData.build"
                       v-on:get="pickBuild"></popup-picker>
-        <div class="item" v-if="formData.storeys.length!==0" @click="popupVisible=true">
-          <div class="item-title"></div>
-          <div class="item-value" >
-            <span v-for="(item,index) in formData.storeys">{{item}}{{index<(formData.storeys.length-1)?"、":""}}</span>
-          </div>
-        </div>
-        <popup-picker title="选择执行人" :values="selData.executorList" :formValue="formData.executor"
-                      v-on:get="pickExecutor"></popup-picker>
-        <!--Sticky Footer-->
         <mt-popup class="popup" v-model="popupVisible" position="right">
           <div class="body-wrap">
             <mt-checklist
@@ -33,24 +24,40 @@
             <mt-button class="btn" type="primary" @click="popupVisible=false">确认</mt-button>
           </div>
         </mt-popup>
+        <div class="item" v-if="formData.storeys.length!==0" @click="popupVisible=true">
+          <div class="item-title"></div>
+          <div class="item-value">
+            <span v-for="(item,index) in formData.storeys">{{item}}{{index<(formData.storeys.length-1)?"、":""}}</span>
+          </div>
+        </div>
+
+        <popup-picker title="选择执行人" :values="selData.executorList" :formValue="formData.executor"
+                      v-on:get="pickExecutor"></popup-picker>
+        <popup-picker title="起止日期" :values="selData.dateList" :formValue="formData.date"
+                      v-on:get="pickDate"></popup-picker>
+        <popup-picker title="巡查次数" :values="selData.countList" :formValue="formData.count"
+                      v-on:get="pickCount"></popup-picker>
+      </div>
+      <div class="btn-wrap">
+        <mt-button class="btn" type="primary" size="large" @click="pageTurning">下一页</mt-button>
       </div>
     </div>
   </div>
 </template>
 
 <style lang="less" rel="stylesheet/less">
-  .add-xuncha-wrap {
+  .add-xuncha-base-wrap {
     .form-wrap {
       .item {
         display: flex;
-        padding:0 10px;
-        min-height:30px;
-        .item-title{
-          flex:0 0 105px;
-          width:105px;
+        padding: 0 10px;
+        min-height: 30px;
+        .item-title {
+          flex: 0 0 105px;
+          width: 105px;
         }
-        .item-value{
-          flex:1;
+        .item-value {
+          flex: 1;
         }
       }
       .popup {
@@ -79,6 +86,12 @@
             transform: translate(-50%, 0);
           }
         }
+      }
+    }
+    .btn-wrap {
+      .btn {
+        position: absolute;
+        bottom: 0;
       }
     }
   }
@@ -130,24 +143,47 @@
           buildList: [
             {
               flex: 1,
-              values: [],
+              values: []
             }
           ],
           buildStoreys: [],
           executorList: [
             {
               flex: 1,
-              values: ['杨队长','林队长'],
+              values: ['杨队长', '林队长'],
             }
           ],
+          dateList: [
+            {
+              flex: 1,
+              values: ['2015-01', '2015-02', '2015-03', '2015-04', '2015-05', '2015-06'],
+              textAlign: 'right'
+            }, {
+              divider: true,
+              content: '-'
+            }, {
+              flex: 1,
+              values: ['2016-01', '2016-02', '2016-03', '2016-04', '2016-05', '2016-06'],
+              textAlign: 'left'
+            }
+          ],
+          countList: [
+            {
+              flex: 1,
+              values: ['每天1次', '每天2次', '每天3次']
+            }
+          ]
         },
         formData: {
           build: "请选择",
           storeys: [],
-          executor:'请选择'
+          executor: '请选择',
+          date: "请选择",
+          count: "请选择"
         }
       }
     },
+    props: ['allData'],
     mounted() {
       this.getData();
     },
@@ -156,6 +192,9 @@
         build.forEach(data => {
           this.selData.buildList[0].values.push(data.name);
         });
+        for (let key in this.allData) {
+          this.formData[key] = this.allData[key];
+        }
       },
       pickBuild(val){
         this.formData.build = val;
@@ -168,6 +207,22 @@
       },
       pickExecutor(val){
         this.formData.executor = val;
+      },
+      pickDate(val){
+        this.formData.date = val;
+      },
+      pickCount(val){
+        this.formData.count = val;
+      },
+      pushData(){
+        for (let key in this.formData) {
+          this.allData[key] = this.formData[key];
+        }
+//        this.$emit('get', this.allData);
+      },
+      pageTurning(){
+        this.pushData();
+        this.$emit('turning', 2);
       }
     },
     components: {
@@ -175,5 +230,4 @@
     }
   }
 </script>
-
-
+6
