@@ -7,7 +7,7 @@ import xunchaList from './views/xuncha/XunchaList.vue';
 import addXuncha from './views/xuncha/AddXuncha.vue';
 import addXunchaDetail from './views/xuncha/AddXunchaDetail.vue';
 import addXunchaDevice from './views/xuncha/AddXunchaDevice.vue';
-import zhiban from './views/zhiban/zhiban.vue';
+import zhibanInfo from './views/zhiban/info.vue';
 import zhibanList from './views/zhiban/ZhibanList.vue';
 import jianchaList from './views/jiancha/JianchaList.vue';
 import weixiuList from 'src/views/weixiu/WeixiuList.vue';
@@ -31,6 +31,11 @@ import exam from 'views/train/exam.vue';
 import startExam from 'views/train/startExam.vue';
 import hiddenDangerList from 'views/hiddenDanger/hiddenDangerList.vue';
 import hiddenDangerDetail from 'views/hiddenDanger/info.vue';
+import deviceList from 'views/device/deviceList.vue';
+import deviceDetail from 'views/device/info.vue';
+import addDevice from 'views/device/add.vue';
+import newsInfo from 'views/news/newsInfo.vue';
+import xunchaOption from 'views/xuncha/xunchaOption';
 
 const routers = {
   mode: 'history',
@@ -57,7 +62,7 @@ const routers = {
       component: xuncha
     },
     {
-      path: '/xuncha_info',
+      path: '/xuncha_info/:pid',
       component: xunchaInfo
     },
     {
@@ -77,12 +82,12 @@ const routers = {
       component: addXunchaDevice
     },
     {
-      path: '/zhiban',
-      component: zhiban
-    },
-    {
       path: '/zhiban_list',
       component: zhibanList
+    },
+    {
+      path: '/zhiban_info/:pid',
+      component: zhibanInfo
     },
     {
       path: '/jiancha_list',
@@ -175,6 +180,26 @@ const routers = {
     {
       path: '/hidden_danger/:pid',
       component: hiddenDangerDetail
+    },
+    {
+      path: '/device',
+      component: deviceList
+    },
+    {
+      path: '/device/:pid',
+      component: deviceDetail
+    },
+    {
+      path: '/device_add',
+      component: addDevice
+    },
+    {
+      path: '/news_info/:pid',
+      component: newsInfo
+    },
+    {
+      path: '/xuncha_option/:pid',
+      component: xunchaOption
     }
   ]
 };

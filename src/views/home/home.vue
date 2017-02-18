@@ -33,7 +33,7 @@
         <!-- tab-container -->
         <mt-tab-container v-model="selected">
           <mt-tab-container-item id="1">
-            <mt-cell v-for="n in 10" :title="'新闻通知 ' + n" />
+            <mt-cell v-for="n in 10" :title="'新闻通知 ' + n" :to="'/news_info/' + n"/>
           </mt-tab-container-item>
           <mt-tab-container-item id="2">
             <mt-cell v-for="n in 4" :title="'安全知识 ' + n" />
