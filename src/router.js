@@ -10,6 +10,7 @@ import addXunchaDetail from './views/xuncha/AddXunchaDetail.vue';
 import addXunchaDevice from './views/xuncha/AddXunchaDevice.vue';
 import zhiban from './views/zhiban/zhiban.vue';
 import zhibanList from './views/zhiban/ZhibanList.vue';
+import addZhiban from './views/zhiban/addZhiban.vue';
 import jianchaList from './views/jiancha/JianchaList.vue';
 import weixiuList from 'src/views/weixiu/WeixiuList.vue';
 import baoyangList from 'src/views/baoyang/BaoyangList.vue';
@@ -88,6 +89,10 @@ const routers = {
     {
       path: '/zhiban_list',
       component: zhibanList
+    },
+    {
+      path: '/add_zhiban',
+      component: addZhiban
     },
     {
       path: '/jiancha_list',
