@@ -28,6 +28,7 @@
       <div class="list-wrap">
         <ul class="list">
           <li class="item" v-for="n in 10">
+            <router-link :to="'/xuncha_info/' + n">
             <div class="info">
               设施设备日常巡查
               <br>
@@ -39,6 +40,7 @@
               状态：进行中
               反馈：无
             </div>
+            </router-link>
           </li>
         </ul>
       </div>
@@ -62,7 +64,7 @@
       .list {
         padding: 0;
         margin: 0;
-        .item {
+        .item>a {
           display: flex;
           padding: 10px 15px;
           border-bottom: 1px solid #ccc;
@@ -84,7 +86,6 @@
           }
         }
       }
-
     }
   }
 </style>

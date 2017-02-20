@@ -13,7 +13,7 @@ export default {
             { class: 'icon-text', text: '隐患库', url: '/hidden_danger' },
             { class: 'icon-text', text: '视频监控', url: '/' },
             { class: 'icon-text', text: '电气监测', url: '/' },
-            { class: 'icon-text', text: '设施设备', url: '/' }]
+            { class: 'icon-text', text: '设施设备', url: '/device' }]
         }
     },
     methods: {

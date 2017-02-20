@@ -23,17 +23,19 @@
       <div class="list-wrap">
         <ul class="list">
           <li class="item" v-for="n in 3">
-            <div class="info">
-              消防控制室白班
-              <br>
-              执行人：杨队长
-              <br>
-              值班时间：8:00-12:00
-            </div>
-            <div class="state" :class="{'succ':n==1,'blue':n==2,'warm':n===3}">
-              状态：进行中
-              反馈：无
-            </div>
+            <router-link :to="'/zhiban_info/' + n">
+              <div class="info">
+                消防控制室白班
+                <br>
+                执行人：杨队长
+                <br>
+                值班时间：8:00-12:00
+              </div>
+              <div class="state" :class="{'succ':n==1,'blue':n==2,'warm':n===3}">
+                状态：进行中
+                反馈：无
+              </div>
+            </router-link>
           </li>
         </ul>
       </div>
@@ -58,7 +60,7 @@
       .list{
         padding:0;
         margin:0;
-        .item {
+        .item>a {
           display: flex;
           padding: 10px 15px;
           border-bottom: 1px solid #ccc;
