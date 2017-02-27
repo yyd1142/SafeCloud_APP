@@ -4,6 +4,9 @@
       <router-link to="/enter?name=mission" slot="left">
         <mt-button icon="back"></mt-button>
       </router-link>
+      <router-link to="/add_zhiban" slot="right">
+        新增
+      </router-link>
     </mt-header>
     <div class="page-wrap zhiban-page-wrap">
       <div class="sel-wrap">
