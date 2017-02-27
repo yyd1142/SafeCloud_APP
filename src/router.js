@@ -92,13 +92,12 @@ const routers = {
       component: zhibanList
     },
     {
-<<<<<<< HEAD
       path: '/add_zhiban',
       component: addZhiban
-=======
+    },
+    {
       path: '/zhiban_info/:pid',
       component: zhibanInfo
->>>>>>> 1c6cb8d4ff31eceab1a48875f8f8f2184b8925b2
     },
     {
       path: '/jiancha_list',
