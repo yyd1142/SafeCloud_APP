@@ -55,7 +55,7 @@
   export default {
     data() {
       return {
-        identity: 1,
+        identity: 2,
         selected: this.$route.query.name || 'home',
         swipeable: true,
         tabsList: [

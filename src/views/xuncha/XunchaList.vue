@@ -25,24 +25,31 @@
           <option value="无隐患">无隐患</option>
         </select>
       </div>
-      <div class="list-wrap">
-        <ul class="list">
-          <li class="item" v-for="n in 10">
-            <router-link :to="'/xuncha_info/' + n">
-            <div class="info">
-              设施设备日常巡查
-              <br>
-              执行人：杨队长
-              <br>
-              值班时间：17:00
-            </div>
-            <div class="state" :class="{'succ':n==1,'blue':n==2,'warm':n>=3}">
-              状态：进行中
-              反馈：无
-            </div>
-            </router-link>
-          </li>
-        </ul>
+      <div class="list-wrap" ref="wrapper" :style="{ height: wrapperHeight + 'px' }">
+        <mt-loadmore :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" @bottom-status-change="handleBtmChange"
+                     ref="loadmore">
+          <ul class="list">
+            <li class="item" v-for="item in xunchaList">
+              <router-link :to="'/xuncha_info/' + item.id">
+                <div class="info">
+                  设施设备日常巡查
+                  <br>
+                  执行人：{{item.executor}}
+                  <br>
+                  值班时间：{{item.time}}
+                </div>
+                <div class="state" :class="{'succ':item.state==1,'blue':item.state==2,'warm':item.state==3}">
+                  状态：{{item.stateName}}
+                  反馈：{{item.feedBack||'无'}}
+                </div>
+              </router-link>
+            </li>
+          </ul>
+          <!--<div slot="bottom" class="mint-loadmore-bottom">-->
+          <!--<span v-show="bottomStatus !== 'loading'" :class="{ 'rotate':bottomStatus === 'drop' }">↑</span>-->
+          <!--<span v-show="bottomStatus === 'loading'">Loading...</span>-->
+          <!--</div>-->
+        </mt-loadmore>
       </div>
     </div>
   </div>
@@ -64,7 +71,7 @@
       .list {
         padding: 0;
         margin: 0;
-        .item>a {
+        .item > a {
           display: flex;
           padding: 10px 15px;
           border-bottom: 1px solid #ccc;
@@ -86,21 +93,193 @@
           }
         }
       }
+      .no-more-data {
+        margin-top: 16px;
+        text-align: center;
+        color: #999;
+      }
     }
   }
 </style>
 
 <script>
+  var xunchaList = [
+    {
+      id: 1,
+      executor: '杨队长',
+      time: '17:00',
+      state: 1,
+      feedback: ''
+    },
+    {
+      id: 2,
+      executor: '杨队长',
+      time: '17:00',
+      state: 1,
+      feedback: 'qweq'
+    },
+    {
+      id: 1,
+      executor: '杨队长',
+      time: '17:00',
+      state: 1,
+      feedback: ''
+    },
+    {
+      id: 2,
+      executor: '杨队长',
+      time: '17:00',
+      state: 1,
+      feedback: 'qweq'
+    },
+    {
+      id: 1,
+      executor: '杨队长',
+      time: '17:00',
+      state: 1,
+      feedback: ''
+    },
+    {
+      id: 2,
+      executor: '杨队长',
+      time: '17:00',
+      state: 1,
+      feedback: 'qweq'
+    },
+    {
+      id: 1,
+      executor: '杨队长',
+      time: '17:00',
+      state: 1,
+      feedback: ''
+    },
+    {
+      id: 2,
+      executor: '杨队长',
+      time: '17:00',
+      state: 1,
+      feedback: 'qweq'
+    },
+    {
+      id: 1,
+      executor: '杨队长',
+      time: '17:00',
+      state: 1,
+      feedback: ''
+    },
+    {
+      id: 2,
+      executor: '杨队长',
+      time: '17:00',
+      state: 1,
+      feedback: 'qweq'
+    },
+    {
+      id: 1,
+      executor: '杨队长',
+      time: '17:00',
+      state: 1,
+      feedback: ''
+    },
+    {
+      id: 2,
+      executor: '杨队长',
+      time: '17:00',
+      state: 1,
+      feedback: 'qweq'
+    },
+    {
+      id: 1,
+      executor: '杨队长',
+      time: '17:00',
+      state: 1,
+      feedback: ''
+    },
+    {
+      id: 2,
+      executor: '杨队长',
+      time: '17:00',
+      state: 1,
+      feedback: 'qweq'
+    },
+    {
+      id: 3,
+      executor: '杨队长',
+      time: '18:00',
+      state: 2,
+      feedback: ''
+    },
+    {
+      id: 4,
+      executor: '杨队长',
+      time: '17:00',
+      state: 3,
+      feedback: 'dada'
+    },
+    {
+      id: 5,
+      executor: '杨队长',
+      time: '17:00',
+      state: 3,
+      feedback: ''
+    }
+  ];
+  import {Toast} from 'mint-ui';
   export default{
     data() {
       return {
-        popupVisible: false
+        bottomStatus: '',
+        allLoaded: false,
+        wrapperHeight: 0,
+        initData: {
+          state: [
+            {text: '进行中', state: 1},
+            {text: '待确认', state: 2},
+            {text: '未上传', state: 3}
+          ]
+        },
+        xunchaList: []
       }
     },
-    mounted() {
-
+    created(){
+      this.getData(3);
     },
-    methods: {},
+    mounted() {
+      this.wrapperHeight = document.documentElement.clientHeight - this.$refs.wrapper.getBoundingClientRect().top - 100;
+    },
+    methods: {
+      getData(count){
+        let listLength = this.xunchaList.length;
+        for (let i = listLength; i < (listLength + count); i++) {
+          if (xunchaList[i]) {
+            this.xunchaList.push(xunchaList[i]);
+          }
+        }
+//        this.xunchaList = xunchaList;
+        this.translateData(this.xunchaList);
+      },
+      translateData(data){
+        data.forEach(item => {
+          item.stateName = this.initData.state[item.state - 1].text;
+        });
+      },
+      handleBtmChange(sta){
+        this.bottomStatus = sta;
+      },
+      loadBottom(){
+        if (this.xunchaList.length >= xunchaList.length) {
+          this.allLoaded = true;
+          Toast({
+            message: '没有更多数据了',
+            position: 'bottom',
+            duration: 5000
+          });
+        } else {
+          this.getData(3);
+          this.$refs.loadmore.onBottomLoaded();
+        }
+      }
+    },
     components: {}
   }
 </script>

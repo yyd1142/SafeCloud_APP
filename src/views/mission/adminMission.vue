@@ -19,81 +19,16 @@
       <mt-tab-container v-model="selected">
         <mt-tab-container-item id="1">
           <ul class="mission-table">
-            <li class="cell">
-              <router-link to="/zhiban_list">
+            <li class="cell" v-for="item in MissionListShow">
+              <router-link :to="item.link">
                 <div class="title">
-                  值班任务
+                  {{item.name}}
                 </div>
-                <span class="badge">进行中：<span class="num">2</span></span>
-                <span class="badge">待确认：<span class="num">2</span></span>
-                <span class="badge">未上传：<span class="num">2</span></span>
+                <span class="badge">进行中：<span class="num">{{item.a}}</span></span>
+                <span class="badge">待确认：<span class="num">{{item.b}}</span></span>
+                <span class="badge">未上传：<span class="num">{{item.c}}</span></span>
               </router-link>
             </li>
-            <li class="cell">
-              <router-link to="/xuncha_list">
-                <div class="title">
-                  巡查任务
-                </div>
-                <span class="badge">进行中：<span class="num">2</span></span>
-                <span class="badge">待确认：<span class="num">2</span></span>
-                <span class="badge">未上传：<span class="num">2</span></span>
-              </router-link>
-            </li>
-            <li class="cell">
-              <router-link to="/jiancha_list">
-                <div class="title">
-                  检查任务
-                </div>
-                <span class="badge">进行中：<span class="num">2</span></span>
-                <span class="badge">待确认：<span class="num">2</span></span>
-                <span class="badge">未上传：<span class="num">2</span></span>
-              </router-link>
-            </li>
-            <li class="cell">
-              <router-link to="/baoyang_list">
-                <div class="title">
-                  保养任务
-                </div>
-                <span class="badge">进行中：<span class="num">2</span></span>
-                <span class="badge">待确认：<span class="num">2</span></span>
-                <span class="badge">未上传：<span class="num">2</span></span>
-              </router-link>
-            </li>
-            <li class="cell">
-              <router-link to="/weixiu_list">
-                <div class="title">
-                  维修任务
-                </div>
-                <span class="badge">进行中：<span class="num">2</span></span>
-                <span class="badge">待确认：<span class="num">2</span></span>
-                <span class="badge">未上传：<span class="num">2</span></span>
-              </router-link>
-            </li>
-            <li class="cell">
-              <router-link to="/jiance_list">
-                <div class="title">
-                  检测任务
-                </div>
-                <span class="badge">进行中：<span class="num">2</span></span>
-                <span class="badge">待确认：<span class="num">2</span></span>
-                <span class="badge">未上传：<span class="num">2</span></span>
-              </router-link>
-            </li>
-            <!--<li class="cell" v-for="item in 6" >-->
-            <!--<router-link-->
-            <!--:to="item===1?'/xuncha_list':(item===2?'/zhiban_list':(item===3?'/jiancha_list':(item===4?'/weixiu_list':(item===5?'/baoyang_list':'/jiance_list'))))">-->
-            <!--<span class="badge">进行中</span>-->
-            <!--<div class="title">-->
-            <!--{{item===1?"巡查任务":(item===2?"值班任务":(item===3?"检查任务":(item===4?"维修任务":(item===5?"保养任务":"检测任务"))))}}-->
-            <!--</div>-->
-            <!--<div class="des">-->
-            <!--5名安全员正在2个消控室值班-->
-            <!--</div>-->
-            <!--<mt-progress class="progress" :value="60">-->
-            <!--<div slot="end">60%</div>-->
-            <!--</mt-progress>-->
-            <!--</router-link>-->
-            <!--</li>-->
           </ul>
         </mt-tab-container-item>
         <mt-tab-container-item id="2">
@@ -159,19 +94,112 @@
       }
     }
   }
-
-
 </style>
 
 <script>
-
+  var mission = {
+    zhiban: {
+      a: 2,
+      b: 3,
+      c: 3
+    },
+    xuncha: {
+      a: 2,
+      b: 3,
+      c: 4
+    },
+    jiancha: {
+      a: 2,
+      b: 3,
+      c: 4
+    },
+    baoyang: {
+      a: 2,
+      b: 3,
+      c: 4
+    },
+    weixiu: {
+      a: 2,
+      b: 9,
+      c: 4
+    },
+    jiance: {
+      a: 2,
+      b: 3,
+      c: 4
+    }
+  };
+  import Api from '../../api';
   export default {
     data() {
       return {
-        selected: '1'
+        selected: '1',
+        MissionListData: {},
+        MissionListShow: {
+          zhiban: {
+            name: '值班任务',
+            link: '/zhiban_list',
+            a: '',
+            b: '',
+            c: ''
+          },
+          xuncha: {
+            name: '巡查任务',
+            link: '/xuncha_list',
+            a: '',
+            b: '',
+            c: ''
+          },
+          jiancha: {
+            name: '检查任务',
+            link: '/jiancha_list',
+            a: '',
+            b: '',
+            c: ''
+          },
+          baoyang: {
+            name: '保养任务',
+            link: '/baoyang_list',
+            a: '',
+            b: '',
+            c: ''
+          },
+          weixiu: {
+            name: '维修任务',
+            link: '/weixiu_list',
+            a: '',
+            b: '',
+            c: ''
+          },
+          jiance: {
+            name: '检测任务',
+            link: '/jiance_list',
+            a: '',
+            b: '',
+            c: ''
+          }
+        }
       }
     },
-    methods: {},
+    created(){
+      this.getData();
+    },
+    methods: {
+      getData(){
+//        Api.adminMissionList({}).then(res => {
+//          if (res.code === 0) {
+        this.MissionListData = mission;
+        let data = mission;
+        let show = this.MissionListShow;
+        for (let key in show) {
+          show[key].a = data[key].a;
+          show[key].b = data[key].b;
+          show[key].c = data[key].c;
+        }
+//          }
+//        });
+      }
+    },
     components: {}
   }
 </script>

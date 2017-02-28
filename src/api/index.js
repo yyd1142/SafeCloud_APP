@@ -4,5 +4,7 @@ export default {
   // 报警记录
   alarmRecordsData: httpGet('alarmRecords'),
   // 设备列表
-  devicesListData: httpGet('devices')
+  devicesListData: httpGet('devices'),
+  //任务总表-管理员
+  adminMissionList:httpGet(''),
 }
