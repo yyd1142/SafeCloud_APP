@@ -27,6 +27,9 @@
                         </tr>
                     </tbody>
                 </table>
+                <div class="zhiban-title">值班日志列表</div>
+                <mt-cell :title="item.title" v-for="item in logs" :to="'/zhiban_log/' + item.id" is-link>
+                </mt-cell>
             </div>
         </div>
     </div>
@@ -38,7 +41,13 @@
     export default {
         data() {
             return {
-
+                logs: [{
+                    id: 1, title: '1-14值班日志'
+                }, {
+                    id: 2, title: '1-15值班日志'
+                }, {
+                    id: 3, title: '1-16值班日志'
+                }]
             }
         },
         methods: {

@@ -38,6 +38,10 @@ import deviceDetail from 'views/device/info.vue';
 import addDevice from 'views/device/add.vue';
 import newsInfo from 'views/news/newsInfo.vue';
 import xunchaOption from 'views/xuncha/xunchaOption';
+import zhibanLog from 'views/zhiban/log.vue';
+import jianchaProjects from 'views/jiancha/jianchaProjects.vue';
+import jianchaInfo from 'views/jiancha/jianchaInfo.vue';
+import login from 'views/login/login.vue';
 
 const routers = {
   mode: 'history',
@@ -45,7 +49,7 @@ const routers = {
   routes: [
     {
       path: '/',
-      redirect: '/enter'
+      redirect: '/login'
     },
     {
       path: '/enter',
@@ -100,8 +104,20 @@ const routers = {
       component: zhibanInfo
     },
     {
+      path: '/zhiban_log/:pid',
+      component: zhibanLog
+    },
+    {
       path: '/jiancha_list',
       component: jianchaList
+    },
+    {
+      path: '/jiancha_projects/:pid',
+      component: jianchaProjects
+    },
+    {
+      path: '/jiancha_info/:pid',
+      component: jianchaInfo
     },
     {
       path: '/weixiu_list',
@@ -210,6 +226,10 @@ const routers = {
     {
       path: '/xuncha_option/:pid',
       component: xunchaOption
+    },
+    {
+      path: '/login',
+      component: login
     }
   ]
 };

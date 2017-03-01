@@ -52,6 +52,7 @@
         background-color: #ffffff;
         padding: 10px 15px 10px 15px;
         line-height: 24px;
+        box-sizing: border-box;
         span {
             display: block;
         }
