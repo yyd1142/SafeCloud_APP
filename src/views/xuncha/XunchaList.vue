@@ -10,19 +10,17 @@
     </mt-header>
     <div class="page-wrap xuncha-page-wrap">
       <div class="sel-wrap">
-        <select class="sel">
-          <option value="万象城A栋">万象城A栋</option>
-          <option value="万象城B栋">万象城B栋</option>
+        <select class="sel" v-model="formData.build">
+          <option value="" disabled>-- 建筑 --</option>
+          <option :value="item.value" v-for="item in selData.build">{{item.text}}</option>
         </select>
-        <select class="sel">
-          <option value="消防控制室A">消防控制室A</option>
-          <option value="消防控制室B">消防控制室B</option>
-          <option value="消防控制室C">消防控制室C</option>
+        <select class="sel" v-model="formData.XKS">
+          <option value="" disabled>-- 消控室 --</option>
+          <option :value="item.value" v-for="item in selData.XKS">{{item.text}}</option>
         </select>
-        <select class="sel">
-          <option value="隐患" disabled selected>隐患</option>
-          <option value="有隐患">有隐患</option>
-          <option value="无隐患">无隐患</option>
+        <select class="sel" v-model="formData.hideDanger">
+          <option value="" disabled>-- 隐患 --</option>
+          <option :value="item.value" v-for="item in selData.hideDanger">{{item.text}}</option>
         </select>
       </div>
       <div class="list-wrap" ref="wrapper" :style="{ height: wrapperHeight + 'px' }">
@@ -103,7 +101,7 @@
 </style>
 
 <script>
-  var xunchaList = [
+  let xunchaList = [
     {
       id: 1,
       executor: '杨队长',
@@ -224,6 +222,15 @@
       feedback: ''
     }
   ];
+  let build = [
+    {text: '万象城A栋', value: '万象城A栋'},
+    {text: '东方科技大厦', value: '东方科技大厦'},
+  ];
+  let XKS = [
+    {text: '消防控制室A', value: '消防控制室A'},
+    {text: '消防控制室B', value: '消防控制室B'},
+    {text: '消防控制室C', value: '消防控制室C'}
+  ];
   import {Toast} from 'mint-ui';
   export default{
     data() {
@@ -233,30 +240,53 @@
         wrapperHeight: 0,
         initData: {
           state: [
-            {text: '进行中', state: 1},
-            {text: '待确认', state: 2},
-            {text: '未上传', state: 3}
+            {text: '进行中', value: 1},
+            {text: '待确认', value: 2},
+            {text: '未上传', value: 3}
           ]
+        },
+        selData: {
+          build: [],
+          XKS: [],
+          hideDanger: [
+            {text: '有隐患', value: 1},
+            {text: '无隐患', value: 2},
+          ]
+        },
+        formData: {
+          build: "",
+          XKS: "",
+          hideDanger: ""
         },
         xunchaList: []
       }
     },
     created(){
-      this.getData(3);
+      this.getData();
     },
     mounted() {
       this.wrapperHeight = document.documentElement.clientHeight - this.$refs.wrapper.getBoundingClientRect().top - 100;
     },
+    watch: {
+      formData: {}
+    },
     methods: {
-      getData(count){
+      getData(){
+        this.getListData(3);
+        this.getSelData();
+      },
+      getListData(count){
         let listLength = this.xunchaList.length;
         for (let i = listLength; i < (listLength + count); i++) {
           if (xunchaList[i]) {
             this.xunchaList.push(xunchaList[i]);
           }
         }
-//        this.xunchaList = xunchaList;
         this.translateData(this.xunchaList);
+      },
+      getSelData(){
+        this.selData.build = build;
+        this.selData.XKS = XKS;
       },
       translateData(data){
         data.forEach(item => {
@@ -272,10 +302,10 @@
           Toast({
             message: '没有更多数据了',
             position: 'bottom',
-            duration: 5000
+            duration: 3000
           });
         } else {
-          this.getData(3);
+          this.getListData(3);
           this.$refs.loadmore.onBottomLoaded();
         }
       }
