@@ -15,9 +15,16 @@
           <div class="fen-jb">击败了78%的同类型单位</div>
         </router-link>
       </div>
-      <!--功能-->
-      <ul class="actions-table-view">
+      <!--管理员功能区-->
+      <ul class="actions-table-view" v-if="identity == 1">
         <li class="actions-table-cell" v-for="item in actions" @click="routerLink(item)">
+          <i class="icon iconfont" :class="item.class"></i>
+          <span v-text="item.text"></span>
+        </li>
+      </ul>
+      <!--安全员功能区-->
+      <ul class="actions-table-view" v-if="identity == 2">
+        <li class="actions-table-cell" :class=" index <= 1 ? actionClass : '' " v-for="(item, index) in aq_actions" @click="routerLink(item)">
           <i class="icon iconfont" :class="item.class"></i>
           <span v-text="item.text"></span>
         </li>

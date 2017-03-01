@@ -4,7 +4,7 @@
     <mt-tab-container v-model="selected">
 
       <mt-tab-container-item :id="tabsList[0].id">
-        <v-home></v-home>
+        <v-home :identity="identity"></v-home>
       </mt-tab-container-item>
 
       <mt-tab-container-item :id="tabsList[1].id">
