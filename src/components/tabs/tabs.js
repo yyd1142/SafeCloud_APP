@@ -1,6 +1,6 @@
 import { Tabbar, TabItem, TabContainer, TabContainerItem } from 'mint-ui';
 import vHome from '../../views/home/home.vue';
-import vMission from '../../views/mission/mission.vue';
+import vMission from '../../views/mission/adminMission.vue';
 import vAddress from '../../views/address/address.vue';
 import vPerson from '../../views/person/person.vue';
 

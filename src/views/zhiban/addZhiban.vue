@@ -12,6 +12,7 @@
       <popup-picker title="值班室" :values="selData.room" :formValue="formData.room"
                     v-on:get="(val) => {formData.room=val}"></popup-picker>
       <div class="title">排班</div>
+      <div class=""></div>
     </div>
   </div>
 </template>
