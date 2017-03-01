@@ -20,7 +20,7 @@ export default {
                 { class: 'icon-text', text: '视频监控', url: '/' },
                 { class: 'icon-text', text: '电气监测', url: '/' },
                 { class: 'icon-text', text: '设施设备', url: '/device' }],
-            aq_actions: [{ class: 'icon-text', text: '今日巡查', url: '/' },
+            aq_actions: [{ class: 'icon-text', text: '今日巡查', url: '/xuncha_info/1' },
             { class: 'icon-text', text: '今日值班', url: '/' },
             { class: 'icon-text', text: '通知公告', url: '/notice' },
             { class: 'icon-text', text: '教育培训', url: '/train' },

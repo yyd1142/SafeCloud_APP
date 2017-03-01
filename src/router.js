@@ -42,6 +42,7 @@ import zhibanLog from 'views/zhiban/log.vue';
 import jianchaProjects from 'views/jiancha/jianchaProjects.vue';
 import jianchaInfo from 'views/jiancha/jianchaInfo.vue';
 import login from 'views/login/login.vue';
+import patrolPointDetail from 'views/patrolPoint/patrolPointDetail.vue';
 
 const routers = {
   mode: 'history',
@@ -230,6 +231,10 @@ const routers = {
     {
       path: '/login',
       component: login
+    },
+    {
+      path: '/patrol_point_detail/:pid',
+      component: patrolPointDetail
     }
   ]
 };
