@@ -1,4 +1,10 @@
 @import "../static/style/formValidator.less";
+@buleColor: #2CABFF;
+@successColor: #259b24;
+@dangerColor: #FF4949;
+@warningColor: #F7BA2A;
+@primaryColor: #2cabff;
+
 
 body {
     margin: 0;
@@ -10,7 +16,7 @@ a, a:hover, a:active, a:visited {
     text-decoration: none;
 }
 
-div{
+div {
     box-sizing: border-box;
 }
 
@@ -21,3 +27,39 @@ div{
     padding-bottom: 100px;
     margin-top: 40px;
 }
+
+// 过渡效果
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s
+}
+
+.fade-enter, .fade-leave-active {
+    opacity: 0
+}
+
+.success {
+    color: @successColor;
+}
+
+.danger {
+    color: @dangerColor;
+}
+
+.warning {
+    color: @warningColor;
+}
+
+.btn-primary {
+    background-color: @primaryColor;
+}
+
+// 底部浮动按钮
+.bottom-btn {
+    border-radius: 0;
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+    font-size: 14px;
+    height: 40px;
+}
+

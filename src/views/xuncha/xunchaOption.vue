@@ -1,7 +1,8 @@
 <template>
     <div>
         <mt-header fixed title="巡查">
-            <mt-button icon="back" slot="left" @click="back"></mt-button>
+            <mt-button icon="back" slot="left" @click="back">返回</mt-button>
+            <mt-button slot="right">往期结果</mt-button>
         </mt-header>
         <div class="page-wrap">
             <div class="xuncha-wrap">
@@ -10,12 +11,14 @@
             <ul class="xcop-table-views">
                 <li class="xcop-table-cell" v-for="(item, index) in xcopDatas">
                     <div class="xcop-wrap">
-                        <span v-if="index != 0"><mt-switch class="xc-switch" v-model="item.value"></mt-switch></span>
-                        <span v-else><input class="xcop-input" type="number" placeholder="请输入数值"></span>
-                        <span class="item" v-text="item.text"></span>
                         <i class="icon iconfont icon-xiangxiajiantou xcop-icon" @click="open(item, index)"></i>
+                         <span class="item" v-text="item.text"></span>
+                         <span v-if="index != 0"><mt-switch class="xc-switch" v-model="item.value"></mt-switch></span>
+                        <span v-else><input class="xcop-input" type="number" placeholder="请输入数值"></span>
                     </div>
-                    <div class="xcop-item" v-if="item.show">灭火器类型、规格、灭火级别和数量符合配置要求；</div>
+                    <transition name="fade">
+                        <div class="xcop-item" v-if="item.show">灭火器类型、规格、灭火级别和数量符合配置要求；</div>
+                    </transition>
                 </li>
             </ul>
             <mt-cell title="全部符合">
