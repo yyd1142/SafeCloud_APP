@@ -9,6 +9,7 @@ import addXunchaBase from './views/xuncha/AddXunchaBase.vue';
 import addXunchaDetail from './views/xuncha/AddXunchaDetail.vue';
 import addXunchaDevice from './views/xuncha/AddXunchaDevice.vue';
 import zhibanInfo from './views/zhiban/info.vue';
+import SaferZhibanInfo from './views/zhiban/SaferZhibanInfo.vue';
 import zhibanList from './views/zhiban/ZhibanList.vue';
 import addZhiban from './views/zhiban/addZhiban.vue';
 import jianchaList from './views/jiancha/JianchaList.vue';
@@ -102,6 +103,10 @@ const routers = {
     {
       path: '/zhiban_info/:pid',
       component: zhibanInfo
+    },
+    {
+      path:'/safer_zhiban_info/:id',
+      component: SaferZhibanInfo
     },
     {
       path: '/zhiban_log/:pid',
