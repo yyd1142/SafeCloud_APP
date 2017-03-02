@@ -1,8 +1,8 @@
 <template>
     <div>
-        <mt-header fixed title="任务详情">
+        <mt-header class="header-wrap" fixed title="任务详情">
             <router-link to="/zhiban_list" slot="left">
-                <mt-button icon="back"></mt-button>
+                <mt-button class="header-item" icon="back"></mt-button>
             </router-link>
         </mt-header>
         <div class="page-wrap">

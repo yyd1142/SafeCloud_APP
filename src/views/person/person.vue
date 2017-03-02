@@ -1,6 +1,6 @@
 <template>
   <div>
-    <mt-header fixed title="我的"></mt-header>
+    <mt-header class="header-wrap" fixed title="我的"></mt-header>
     <div class="page-wrap person-page-wrap">
       <div class="data">
         <mt-cell title="杨子康" value="猫空科技公司" is-link to="/person_data">

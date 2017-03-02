@@ -1,7 +1,7 @@
 <template>
   <div>
-    <mt-header fixed :title="zhibanInfo.name">
-      <mt-button icon="back" slot="left" @click.native="back()"></mt-button>
+    <mt-header class="header-wrap" fixed :title="zhibanInfo.name">
+      <mt-button class="header-item" icon="back" slot="left" @click.native="back()"></mt-button>
     </mt-header>
     <div class="page-wrap safer-zhiban-info" v-show="page==='base'">
       <div class="status-wrap">

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <mt-header fixed :title="$route.params.pid?'编辑联系人':'新增联系人'">
+    <mt-header class="header-wrap" fixed :title="$route.params.pid?'编辑联系人':'新增联系人'">
       <router-link to="/enter?name=address" slot="left">
-        <mt-button icon="back"></mt-button>
+        <mt-button class="header-item" icon="back"></mt-button>
       </router-link>
     </mt-header>
     <div class="page-wrap add-ins-contact">

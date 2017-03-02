@@ -23,10 +23,10 @@
     </mt-tab-container>
 
     <!--tabs-->
-    <mt-tabbar fixed v-model="selected">
+    <mt-tabbar class="tab-wrap" fixed v-model="selected">
       <mt-tab-item v-for="tab in tabsList" :id="tab.id">
         <span class="tab-icon-font"><i class="icon iconfont" :class="tab.class"></i></span>
-        {{tab.name}}
+        <span class="tab-name-font">{{tab.name}}</span>
       </mt-tab-item>
     </mt-tabbar>
   </div>
@@ -36,11 +36,14 @@
   .tab-icon-font {
     width: 100%;
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
     text-align: center;
     i {
-      font-size: 25px;
+      font-size: 24px;
     }
+  }
+  .tab-name-font{
+    font-size: 10px;
   }
 </style>
 

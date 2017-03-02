@@ -1,8 +1,8 @@
 <template>
   <div>
-    <mt-header fixed title="联系人详情">
+    <mt-header class="header-wrap" fixed title="联系人详情">
       <router-link to="/enter?name=address" slot="left">
-        <mt-button icon="back">返回</mt-button>
+        <mt-button class="header-item" icon="back">返回</mt-button>
       </router-link>
     </mt-header>
     <div class="page-wrap address-detail-wrap">

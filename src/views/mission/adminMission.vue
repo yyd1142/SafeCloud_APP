@@ -1,7 +1,7 @@
 <template>
   <div>
-    <mt-header fixed title="任务">
-      <mt-button slot="right">日历</mt-button>
+    <mt-header class="header-wrap" fixed title="任务">
+      <mt-button class="header-item" slot="right">日历</mt-button>
     </mt-header>
     <div class="page-wrap admin-mission-page-wrap">
       <!--TAB-->

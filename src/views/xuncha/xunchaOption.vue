@@ -1,8 +1,8 @@
 <template>
     <div>
-        <mt-header fixed title="巡查">
-            <mt-button icon="back" slot="left" @click="back">返回</mt-button>
-            <mt-button slot="right">往期结果</mt-button>
+        <mt-header class="header-wrap" fixed title="巡查">
+            <mt-button class="header-item" icon="back" slot="left" @click="back">返回</mt-button>
+            <mt-button class="header-item" slot="right">往期结果</mt-button>
         </mt-header>
         <div class="page-wrap">
             <div class="xuncha-wrap">

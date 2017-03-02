@@ -1,7 +1,7 @@
 <template>
   <div>
-    <mt-header fixed title="隐患查报">
-      <mt-button icon="back" slot="left" @click.native="back()"></mt-button>
+    <mt-header class="header-wrap" fixed title="隐患查报">
+      <mt-button class="header-item" icon="back" slot="left" @click.native="back()"></mt-button>
     </mt-header>
     <div class="page-wrap check-hide-danger">
       <div class="info-wrap">

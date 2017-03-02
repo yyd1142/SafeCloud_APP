@@ -1,7 +1,7 @@
 <template>
     <div>
-        <mt-header fixed title="消防设施日常巡查">
-            <mt-button icon="back" slot="left" @click="back()">任务</mt-button>
+        <mt-header class="header-wrap" fixed title="消防设施日常巡查">
+            <mt-button class="header-item" icon="back" slot="left" @click="back()">任务</mt-button>
         </mt-header>
         <div class="page-wrap">
             <div class="xuncha-wrap">

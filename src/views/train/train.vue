@@ -1,11 +1,11 @@
 <template>
     <div>
-        <mt-header fixed title="教育培训">
+        <mt-header class="header-wrap" fixed title="教育培训">
             <router-link to="/enter" slot="left">
-                <mt-button icon="back"></mt-button>
+                <mt-button class="header-item" icon="back"></mt-button>
             </router-link>
             <router-link to="/past_score" slot="right">
-                <mt-button>往期成绩</mt-button>
+                <mt-button class="header-item">往期成绩</mt-button>
             </router-link>
         </mt-header>
         <div class="page-wrap">

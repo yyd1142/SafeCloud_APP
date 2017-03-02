@@ -1,8 +1,8 @@
 <template>
     <div>
-      <mt-header fixed title="设置">
+      <mt-header class="header-wrap" fixed title="设置">
         <router-link to="/enter?name=person" slot="left">
-          <mt-button icon="back"></mt-button>
+          <mt-button class="header-item" icon="back"></mt-button>
         </router-link>
       </mt-header>
       <div class="page-wrap config-page-wrap">

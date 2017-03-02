@@ -1,11 +1,11 @@
 <template>
   <div>
-    <mt-header fixed title="值班任务列表">
+    <mt-header class="header-wrap" fixed title="值班任务列表">
       <router-link to="/enter?name=mission" slot="left">
-        <mt-button icon="back"></mt-button>
+        <mt-button class="header-item" icon="back"></mt-button>
       </router-link>
       <router-link to="/add_zhiban" slot="right">
-        新增
+        <span class="header-item">新增</span>
       </router-link>
     </mt-header>
     <div class="page-wrap zhiban-page-wrap">
