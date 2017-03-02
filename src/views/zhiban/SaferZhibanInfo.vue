@@ -3,14 +3,14 @@
     <mt-header fixed :title="zhibanInfo.name">
       <mt-button icon="back" slot="left" @click.native="back()"></mt-button>
     </mt-header>
-    <div class="page-wrap safer-zhiban-info">
+    <div class="page-wrap safer-zhiban-info" v-show="page==='base'">
       <div class="status-wrap">
         <div class="btn" :class="{'start':status===1,'on':status===2,'end':status===3}" @click="changeStatus">
           <p class="logo" v-if="status===3"><i class="icon iconfont icon-account-filling"></i></p>
           <span v-html="status===1?('开始<br>值班'):(status===2?'结束<br>值班':'已完成')"></span>
         </div>
-        <div class="desc" v-if="status!==1">
-          本次值班共用时{{timing.text}}
+        <div class="desc" v-show="status!==1">
+          <count-timer text="本次值班共用时" start="0" ref="CountTimer"></count-timer>
         </div>
       </div>
       <div class="info-wrap">
@@ -21,13 +21,14 @@
           <p class="content">{{zhibanInfo.desc||'无'}}</p>
         </div>
       </div>
-      <div class="record-wrap">
+      <div class="record-wrap" v-if="status!==1">
         <p class="record" v-for="item in zhibanRecord">{{item.text}}</p>
       </div>
       <div class="footer-wrap" v-if="status===2">
-        <mt-button class="btn" size="large">隐患查报</mt-button>
+        <mt-button class="btn" size="large" @click="page='check'">隐患查报</mt-button>
       </div>
     </div>
+    <check-hide-danger @ctrl-page="page='base'" v-show="page==='check'"></check-hide-danger>
   </div>
 </template>
 
@@ -76,9 +77,10 @@
       }
       .desc {
         position: absolute;
-        bottom: 25px;
+        bottom: 15px;
         left: 50%;
         transform: translate(-50%, 0);
+        min-width:200px;
       }
     }
     .info-wrap {
@@ -101,7 +103,7 @@
       bottom: 0;
       .btn {
         background: #f44336;
-        color:#fff;
+        color: #fff;
       }
     }
   }
@@ -121,18 +123,17 @@
         name: '王保安'
       }
     ],
-    desc: ''
+    desc: '',
+    startTime: 0
   };
   let zhibanRecord = [];
+  import CountTimer from '../../components/CountTimer/CountTimer.vue';
+  import CheckHideDanger from './CheckHideDanger.vue';
   export default{
     data() {
       return {
+        page: 'base',
         status: 1,
-        timing: {
-          minute: 0,
-          hour: 0,
-          text: ''
-        },
         zhibanInfo: {},
         zhibanRecord: []
       }
@@ -143,9 +144,11 @@
     watch: {
       status: function (val) {
         if (val === 2) {
-          this.reckonByTime();
+          this.$refs.CountTimer.startTimer();
+        } else if (val === 3) {
+          this.$refs.CountTimer.clearTimer();
         }
-      }
+      },
     },
     methods: {
       getData(){
@@ -170,34 +173,15 @@
           this.status++;
         }
       },
-      reckonByTime(){
-        this.timing.minute = 0;
-        this.filterTime();
-        let timer = setInterval(() => {
-          this.timing.minute++;
-          this.filterTime();
-          if (this.status !== 2) {
-            clearInterval(timer);
-            timer = null;
-          }
-        }, 600);
-      },
-      filterTime(){
-        let m = this.timing.minute;
-        let h = this.timing.hour;
-        if (m % 60 === 0 && m !== 0) {
-          m = 0;
-          h++;
-        }
-        this.timing.text = `${h}时${m}分`;
-        this.timing.minute = m;
-        this.timing.hour = h;
-      },
       back() {
         this.$router.go(-1);
+        this.$refs.CountTimer.clearTimer();
       }
     },
-    components: {}
+    components: {
+      CountTimer,
+      CheckHideDanger
+    }
   }
 </script>
 
