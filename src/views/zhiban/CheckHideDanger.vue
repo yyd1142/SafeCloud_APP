@@ -26,11 +26,12 @@
                          v-for="item in options.build" size="large"><span v-show="formData.build==item.value"></span>{{item.label}}
               </mt-button>
             </div>
-            <div class="radio-wrap">
+            <div class="radio-wrap floor-radio-wrap">
               <p class="title">楼层隐患</p>
-              <mt-button class="radio floor-radio" :class="{'checked':formData.floor==item}"
-                         @click.native="formData.floor=item"
-                         v-for="item in options.floor"><span v-show="formData.floor==item"></span>{{item}}
+              <mt-button class="radio" :class="{'checked':formData.floor==item}"
+                         @click.native="formData.floor=item" v-for="item in options.floor">
+                <span v-show="formData.floor==item"></span>
+                {{item}}层
               </mt-button>
             </div>
           </div>
@@ -41,36 +42,35 @@
         </mt-popup>
       </div>
       <div class="content-wrap">
-        <div class="title">
-          <mt-field v-model="formData.title" placeholder="请输入隐患标题"></mt-field>
-        </div>
+        <!--<div class="title">-->
+          <!--<mt-field v-model="formData.title" placeholder="请输入隐患标题"></mt-field>-->
+        <!--</div>-->
         <div class="desc">
           <mt-field v-model="formData.desc" placeholder="请输入隐患描述" type="textarea"></mt-field>
         </div>
         <div class="photo-wrap">
           <div class="photo-list">
             <div class="photo" @click="photoPreview" v-for="item in photoList">
-              <img src="./logo.png" width="100" height="100">
+              <img src="./logo.png">
             </div>
-            <div class="photo" v-if="photoList.length<9">
+            <div class="photo" v-if="photoList.length<8">
               <div class="btn" @click="sheetShow=true">+</div>
             </div>
           </div>
         </div>
       </div>
-      <photo-preview photoId="1" ref="photoPreview"></photo-preview>
-      <div class="actions-wrap">
-        <mt-actionsheet
-          :actions="actions"
-          cancelText="取消"
-          v-model="sheetShow">
-        </mt-actionsheet>
+      <div class="footer-wrap">
+        <mt-button class="btn" size="large" @click="postHideDanger">提交隐患</mt-button>
       </div>
+      <photo-preview photoId="1" ref="photoPreview"></photo-preview>
+      <mt-actionsheet v-model="sheetShow" :actions="actions" cancelText="取消"></mt-actionsheet>
     </div>
   </div>
 </template>
 
 <style lang="less" rel="stylesheet/less">
+  @import "../../app.less";
+
   .check-hide-danger {
     .info-wrap {
       .cell-btn {
@@ -80,13 +80,12 @@
     .popup-wrap {
       position: relative;
       .mint-popup-right {
-        width: 80%;
+        width: 284px;
         height: 100%;
       }
       .body-wrap {
         overflow: scroll;
-        padding: 20px 10px 100px 10px;
-        margin-bottom: 100px;
+        padding: 34px 7px 100px;
         max-height: 700px;
         bottom: 100px;
         &:after {
@@ -97,17 +96,27 @@
           margin-bottom: 10px;
           .radio {
             margin-bottom: 10px;
-            &.floor-radio {
-              min-width: 47px;
-              & + .floor-radio {
-                margin-left: 10px;
-              }
-
-            }
             &.checked {
               background: #fff;
               border: 1px solid #0089dc;
             }
+          }
+          .title {
+            margin: 0 0 10px;
+          }
+          &.floor-radio-wrap {
+            .radio {
+              float: left;
+              width: 50px;
+              height: 30px;
+              margin-right: 4px;
+              font-size: 13px;
+            }
+          }
+          & + .radio-wrap {
+            margin-top: 20px;
+            padding-top: 20px;
+            .border-top(#D8D8D8);
           }
         }
       }
@@ -133,33 +142,52 @@
     }
     .content-wrap {
       margin-top: 10px;
-      .title {
-      }
+      background:#fff;
       .desc {
+        margin-bottom:28px;
+        .mint-cell-value{
+          textarea{
+            min-height:100px;
+          }
+        }
       }
       .photo-wrap {
-        padding: 10px;
+        padding: 0 10px 10px;
         background: #fff;
         .photo-list {
           display: flex;
           flex-wrap: wrap;
           .photo {
-            flex: 0 0 33.33%;
-            text-align: center;
+            flex: 0 0 25%;
+            position: relative;
+            min-height: 80px;
             margin-bottom: 10px;
+            text-align: center;
+            >img{
+              width:90%;
+            }
             .btn {
               position: absolute;
               left: 50%;
               transform: translate(-50%, 0);
-              width: 100px;
-              height: 100px;
-              line-height: 100px;
+              width: 80px;
+              height: 80px;
+              line-height: 80px;
               border: 1px dotted #999;
               border-radius: 4px;
               color: #999;
             }
           }
         }
+      }
+    }
+    .footer-wrap {
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+      .btn {
+        background: #f44336;
+        color: #fff;
       }
     }
   }
@@ -171,7 +199,8 @@
     {id: 2, build: '欢乐海岸', floor: [-2, -1, 1, 2, 3, 4, 5, 6]},
     {id: 3, build: '平安国际中心大厦', floor: [-2, -1, 1, 2, 3, 4, 5, 6, 7]}
   ];
-  let photo = ['./logo.png', './logo.png', './logo.png', './logo.png'];
+  let photo = ['./logo.png', './logo.png', './logo.png', './logo.png', './logo.png'];
+  import { Toast } from 'mint-ui';
   import PhotoPreview from '../../components/PhotoPreview/PhotoPreview.vue';
   export default{
     data() {
@@ -179,10 +208,7 @@
         popupShow: false,
         sheetShow: false,
         photoId: 1,
-        actions: [
-          {name: '拍照', method: 'addPhoto()'},
-          {name: '从相册中选择', method: 'addPhoto'},
-        ],
+        actions: [],
         location: {},
         options: {
           build: [],
@@ -201,6 +227,10 @@
     },
     created() {
       this.getData();
+      this.actions = [
+        {name: '拍照', method: this.addPhoto},
+        {name: '从相册中选择', method: this.addPhoto},
+      ];
     },
     watch: {
       'formData.build': function (val) {
@@ -232,7 +262,6 @@
         this.options.build = location.map(item => {
           return {label: item.build, value: item.id};
         });
-        console.log(this.options.build);
       },
       addPhoto(){
         this.photoList.push('1');
@@ -243,6 +272,15 @@
       resetData(){
         this.formData.build = "";
         this.formData.floor = "";
+      },
+      postHideDanger(){
+        Toast({
+          message: '提交成功',
+          duration: 2000
+        });
+        setTimeout(() => {
+          this.back();
+        }, 1500);
       },
       back(){
         this.$emit('ctrl-page', 1);
