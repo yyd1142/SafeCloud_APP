@@ -4,20 +4,15 @@
       <mt-button class="header-item" slot="right">日历</mt-button>
     </mt-header>
     <div class="page-wrap safer-mission-page-wrap">
-      <!--TAB-->
-      <mt-navbar v-model="selected">
-        <mt-tab-item id="1">周一</mt-tab-item>
-        <mt-tab-item id="2">周二</mt-tab-item>
-        <mt-tab-item id="3">周三</mt-tab-item>
-        <mt-tab-item id="4">周四</mt-tab-item>
-        <mt-tab-item id="5">周五</mt-tab-item>
-        <mt-tab-item id="6">周六</mt-tab-item>
-        <mt-tab-item id="7">周日</mt-tab-item>
-      </mt-navbar>
-
-      <!-- tab-container -->
+      <date-navbar :selected="selected" @sel="getSel"></date-navbar>
       <mt-tab-container v-model="selected">
         <mt-tab-container-item id="1">
+          <mt-cell v-for="n in 3" :title="'重要事项 ' + n"/>
+        </mt-tab-container-item>
+        <mt-tab-container-item id="2">
+          <mt-cell v-for="n in 2" :title="'重要事项 ' + n"/>
+        </mt-tab-container-item>
+        <mt-tab-container-item id="3">
           <ul class="mission-table">
             <li class="cell">
               <div class="type">
@@ -70,17 +65,11 @@
             </li>
           </ul>
         </mt-tab-container-item>
-        <mt-tab-container-item id="2">
-          <mt-cell v-for="n in 4" :title="'重要事项 ' + n"/>
-        </mt-tab-container-item>
-        <mt-tab-container-item id="3">
-          <mt-cell v-for="n in 4" :title="'重要事项 ' + n"/>
-        </mt-tab-container-item>
         <mt-tab-container-item id="4">
           <mt-cell v-for="n in 4" :title="'重要事项 ' + n"/>
         </mt-tab-container-item>
         <mt-tab-container-item id="5">
-          <mt-cell v-for="n in 4" :title="'重要事项 ' + n"/>
+          <mt-cell v-for="n in 5" :title="'重要事项 ' + n"/>
         </mt-tab-container-item>
       </mt-tab-container>
     </div>
@@ -113,17 +102,17 @@
             .item {
               & > a {
                 display: flex;
-                padding: 0 15px 10px 15px;
+                padding: 10px 15px;
                 border-bottom: 1px solid #ccc;
                 .content {
                   flex: 1;
                   .title {
-                    line-height:20px;
+                    line-height: 20px;
                     font-size: 14px;
                     color: #232323;
                   }
                   .desc {
-                    line-height:17px;
+                    line-height: 17px;
                     font-size: 12px;
                     color: #A0A0A0;
                   }
@@ -222,10 +211,11 @@
       feedback: ''
     }
   ];
+  import DateNavbar from '../../components/DateNavbar/DateNavbar.vue';
   export default {
     data() {
       return {
-        selected: '1',
+        selected: '3',
         initData: {
           state: {
             xuncha: [
@@ -259,8 +249,13 @@
         data.forEach(item => {
           item.stateName = this.initData.state[type][item.state - 1].text;
         });
+      },
+      getSel(val){
+        this.selected = val;
       }
     },
-    components: {}
+    components: {
+      DateNavbar
+    }
   }
 </script>
