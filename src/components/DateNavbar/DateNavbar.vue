@@ -1,6 +1,6 @@
 <template>
     <div>
-
+        DateNavbar
     </div>
 </template>
 

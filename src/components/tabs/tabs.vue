@@ -33,6 +33,8 @@
 </template>
 
 <style lang="less" rel="stylesheet/less" scoped>
+
+
   .tab-icon-font {
     width: 100%;
     display: block;

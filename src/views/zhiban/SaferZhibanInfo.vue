@@ -166,15 +166,12 @@
         this.zhibanRecord = zhibanRecord;
       },
       changeStatus(){
-        if (this.status === 3) {
-          this.status = 1;
-//          return;
-        } else {
+        if (this.status !== 3) {
           this.status++;
         }
       },
       back() {
-        this.$router.go(-1);
+        this.$router.push("/enter?name=mission");
         this.$refs.CountTimer.clearTimer();
       }
     },
