@@ -1,8 +1,8 @@
 <template>
   <div>
-    <mt-header fixed title="添加设备">
+    <mt-header class="header-wrap" fixed title="添加设备">
       <div @click="pageTurning(2)" slot="left">
-        <mt-button icon="back"></mt-button>
+        <mt-button class="header-item" icon="back"></mt-button>
       </div>
     </mt-header>
     <div class="page-wrap add-xuncha-device-wrap">

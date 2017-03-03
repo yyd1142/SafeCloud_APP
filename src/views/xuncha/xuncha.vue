@@ -1,8 +1,8 @@
 <template>
     <div>
-        <mt-header fixed title="今日巡查">
+        <mt-header class="header-wrap" fixed title="今日巡查">
             <router-link to="/enter" slot="left">
-                <mt-button icon="back"></mt-button>
+                <mt-button class="header-item" icon="back"></mt-button>
             </router-link>
         </mt-header>
         <div class="page-wrap">

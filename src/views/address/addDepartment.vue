@@ -1,11 +1,11 @@
 <template>
   <div>
-    <mt-header fixed title="新增部门">
+    <mt-header class="header-wrap" fixed title="新增部门">
       <router-link to="/enter?name=address" slot="left">
-        <mt-button icon="back"></mt-button>
+        <mt-button class="header-item" icon="back"></mt-button>
       </router-link>
       <router-link to="/edit_department" slot="right">
-        <mt-button type="default">编辑</mt-button>
+        <mt-button class="header-item" type="default">编辑</mt-button>
       </router-link>
     </mt-header>
     <div class="page-wrap add-department">

@@ -1,7 +1,7 @@
 <template>
     <div>
-        <mt-header fixed title="1-14值班日志">
-            <mt-button icon="back" slot="left"  @click.native="back()"></mt-button>
+        <mt-header class="header-wrap" fixed title="1-14值班日志">
+            <mt-button class="header-item" icon="back" slot="left"  @click.native="back()"></mt-button>
         </mt-header>
         <div class="page-wrap">
             <div class="zhiban-wrap">

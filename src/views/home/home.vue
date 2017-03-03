@@ -1,20 +1,23 @@
 <template>
   <div>
-    <mt-header fixed title="安全云">
+    <mt-header class="home-header-wrap" fixed title="安全云">
       <router-link to="/message" slot="right">
-        <mt-button>消息</mt-button>
+        <i class="icon iconfont icon-xiaoxizhongxin home-message-icon"></i>
       </router-link>
     </mt-header>
     <div class="page-wrap" ref="wrapper" :style="{ height: wrapperHeight + 'px' }">
       <!--安全得分-->
-      <div class="fen-wrap">
+      <div class="home-banner-wrap">
+        <img src="/static/banner.png"/>
+      </div>
+      <!--<div class="fen-wrap">
         <router-link to="/score">
           <div class="fen-company" v-text="scoreItem.company"></div>
           <div class="fen-value" v-text="scoreItem.value"></div>
           <div class="fen-level" v-text="scoreItem.level"></div>
           <div class="fen-jb">击败了78%的同类型单位</div>
         </router-link>
-      </div>
+      </div>-->
       <!--管理员功能区-->
       <ul class="actions-table-view" v-if="identity == 1">
         <li class="actions-table-cell" v-for="item in actions" @click="routerLink(item)">

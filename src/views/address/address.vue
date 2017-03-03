@@ -1,11 +1,11 @@
 <template>
   <div>
-    <mt-header fixed title="通讯录">
+    <mt-header class="header-wrap" fixed title="通讯录">
       <router-link to="/add_inside_contact" slot="right">
-        <mt-button>新增 +</mt-button>
+        <mt-button class="header-item">新增 +</mt-button>
       </router-link>
       <router-link to="/add_department" slot="left">
-        <mt-button>部门</mt-button>
+        <mt-button class="header-item">部门</mt-button>
       </router-link>
     </mt-header>
     <div class="page-wrap address-wrap">

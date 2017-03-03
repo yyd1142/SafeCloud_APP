@@ -1,7 +1,7 @@
 <template>
     <div>
-        <mt-header fixed title="任务详情">
-            <mt-button slot="left" icon="back" @click.native="back()"></mt-button>
+        <mt-header class="header-wrap" fixed title="任务详情">
+            <mt-button class="header-item" slot="left" icon="back" @click.native="back()"></mt-button>
         </mt-header>
         <div class="page-wrap">
             <div class="jiancha-wrap">

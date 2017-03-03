@@ -1,9 +1,9 @@
 <template>
   <div>
     <!--编辑部门-->
-    <mt-header fixed title="编辑部门">
+    <mt-header class="header-wrap" fixed title="编辑部门">
       <router-link to="/add_department" slot="left">
-        <mt-button icon="back"></mt-button>
+        <mt-button class="header-item" icon="back"></mt-button>
       </router-link>
     </mt-header>
     <div class="page-wrap edit-department">

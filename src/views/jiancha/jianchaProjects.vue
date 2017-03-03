@@ -1,8 +1,8 @@
 <template>
   <div>
-    <mt-header fixed title="检查任务项目">
+    <mt-header class="header-wrap" fixed title="检查任务项目">
       <router-link to="/jiancha_list" slot="left">
-        <mt-button icon="back"></mt-button>
+        <mt-button class="header-item" icon="back"></mt-button>
       </router-link>
     </mt-header>
     <div class="page-wrap jiancha-page-wrap">

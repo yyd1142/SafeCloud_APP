@@ -1,4 +1,5 @@
 @import "../static/style/formValidator.less";
+@import "config.less";
 
 body {
   margin: 0;
@@ -14,12 +15,19 @@ div {
   box-sizing: border-box;
 }
 
+ul, li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 .page-wrap {
   width: 100%;
   overflow: auto;
   height: 100%;
   padding-bottom: 100px;
   margin-top: 40px;
+  position: relative;
 }
 
 //0.5px边框
@@ -45,4 +53,67 @@ div {
     transform-origin: 0 0;
     border-bottom: 1px solid @color;
   }
+}
+
+// 过渡效果
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0;
+}
+
+.success {
+  color: @successColor;
+}
+
+.danger {
+  color: @dangerColor;
+}
+
+.warning {
+  color: @warningColor;
+}
+
+.btn-primary {
+  background-color: @primaryColor;
+}
+
+.btn-red {
+  background-color: @redColor;
+}
+
+// header部分
+.header-wrap {
+  background-color: @blueColor;
+  color: #fff;
+  font-size: 18px;
+}
+
+.header-item {
+  font-size: 16px !important;
+}
+
+// 底部浮动按钮
+.bottom-btn {
+  border-radius: 0;
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  font-size: 14px;
+  height: 40px;
+}
+
+// 底部tabs
+.tab-wrap {
+  height: 48px;
+}
+
+.background-blue {
+  background-color: @blueColor;
+}
+
+.font-blue {
+  color: @blueColor;
 }

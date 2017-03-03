@@ -1,8 +1,8 @@
 <template>
     <div>
-        <mt-header fixed title="消防安全管理得分">
+        <mt-header class="header-wrap" fixed title="消防安全管理得分">
             <router-link to="/enter" slot="left">
-                <mt-button icon="back"></mt-button>
+                <mt-button class="header-item" icon="back"></mt-button>
             </router-link>
         </mt-header>
         <div class="page-wrap">

@@ -1,8 +1,8 @@
 <template>
     <div>
-        <mt-header fixed title="通知公告">
+        <mt-header class="header-wrap" fixed title="通知公告">
             <router-link to="/notice" slot="left">
-                <mt-button icon="back"></mt-button>
+                <mt-button class="header-item" icon="back"></mt-button>
             </router-link>
         </mt-header>
         <div class="page-wrap">
