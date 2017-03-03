@@ -4,11 +4,19 @@
             <mt-button class="header-item" icon="back" slot="left" @click="back()">任务</mt-button>
         </mt-header>
         <div class="page-wrap">
+            <xuncha-status></xuncha-status>
             <div class="patrol-qiandao">
-                <div class="qiandao-icon"><i class="icon iconfont icon-text"></i>到达巡更点后，请拍照签到</div>
+                <div class="qiandao-icon"><i class="icon iconfont icon-wxbdingwei"></i>到达巡更点后，请拍照签到</div>
                 <ul class="photo-table-view">
-                    <li class="photo-table-cell" v-for="item in 4">
+                    <!--<li class="photo-table-cell" v-for="item in 3">
                         <img src="/static/image-square.png" />
+                    </li>-->
+                    <li class="photo-table-cell">
+                        <div class="photo-plus-btn">
+                            <span class="plus">
+                                <i class="icon iconfont icon-zhaoxiangji"></i>
+                            </span>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -45,6 +53,8 @@
 </template>
 
 <script>
+    import xunchaStatus from '../../components/xunchaStatusNavbar/xunchaStatus.vue';
+
     export default {
         data() {
             return {
@@ -60,7 +70,7 @@
             }
         },
         components: {
-
+            xunchaStatus
         }
     }
 

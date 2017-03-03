@@ -1,8 +1,10 @@
+@import "../../config.less";
 .patrol-qiandao {
     width: 100%;
     margin: 0 auto;
     background-color: #ffffff;
     padding-top: 10px;
+    margin-top: 51px;
     .qiandao-icon {
         width: 100%;
         margin: 0 auto;
@@ -23,6 +25,28 @@
             width: 25%;
             height: 25vw;
             display: inline-block;
+            .photo-plus-btn {
+                width: 80%;
+                height: 80%;
+                display: block;
+                margin: 10% 10%;
+                border: 1px solid #d8d8d8;
+                position: relative;
+                .plus {
+                    width: 100%;
+                    text-align: center;
+                    display: block;
+                    height: 33px;
+                    position: ABSOLUTE;
+                    margin: auto;
+                    top: 0;
+                    bottom: 0;
+                    i {
+                        font-size: 30px;
+                        color: @blueColor;
+                    }
+                }
+            }
             img {
                 width: 80%;
                 height: 80%;
@@ -41,34 +65,34 @@
 .patorl-mt-cell {
     width: 100%;
     position: relative;
-    min-height: 38px;
+    min-height: 30px;
     .patorl-table-cell {
         width: 100%;
         position: absolute;
         left: 0;
-        height: 38px;
+        height: 30px;
         right: 0;
         margin: auto;
         top: 0;
         bottom: 0;
         i {
             font-size: 14px;
-            margin: 13px 10px;
+            margin: 9px 10px;
             float: left;
         }
         .patorl-name {
             display: block;
             width: auto;
             float: left;
-            font-size: 13px;
+            font-size: 14px;
             color: #333;
-            margin: 13px 0;
+            margin: 9px 0;
         }
         .patorl-status {
             width: auto;
             float: right;
-            font-size: 13px;
-            margin: 12px 34px 10px 0;
+            font-size: 14px;
+            margin: 9px 34px 10px 0;
         }
     }
 }

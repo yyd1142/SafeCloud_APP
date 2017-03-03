@@ -2,7 +2,7 @@
   <div>
     <mt-header class="home-header-wrap" fixed title="安全云">
       <router-link to="/message" slot="right">
-        <i class="icon iconfont icon-text home-message-icon"></i>
+        <i class="icon iconfont icon-xiaoxizhongxin home-message-icon"></i>
       </router-link>
     </mt-header>
     <div class="page-wrap" ref="wrapper" :style="{ height: wrapperHeight + 'px' }">
