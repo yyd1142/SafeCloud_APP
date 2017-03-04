@@ -30,9 +30,13 @@
                           开始时间：{{item.time}}
                         </div>
                       </div>
-                      <div class="state"
-                           :class="{'default':item.state==1||item.state==4,'warm':item.state==2,'on':item.state==3}">
-                        {{item.stateName}}
+                      <div class="state">
+                        <mt-badge class="badge" size="small">28</mt-badge>
+                        <span class="text"
+                              :class="{'default':item.state==1||item.state==4,'warm':item.state==2,'on':item.state==3}">
+                          {{item.stateName}}
+                        </span>
+                        <i class="icon iconfont icon-xiangyoujiantou"></i>
                       </div>
                     </router-link>
                   </li>
@@ -77,6 +81,8 @@
 </template>
 
 <style lang="less" rel="stylesheet/less" scoped>
+  @import "../../config.less";
+
   .safer-mission-page-wrap {
     .mission-table {
       width: 100%;
@@ -87,13 +93,13 @@
         position: relative;
         border-bottom: 1px solid #ddd;
         .type {
-          padding-left: 5px;
           width: 100%;
           height: 30px;
           line-height: 30px;
+          padding-left: 5px;
           font-size: 18px;
-          background: #aaa;
-          color: #fff;
+          background: @bgGray;
+          color: @textBlue;
         }
         .list-wrap {
           .list {
@@ -102,7 +108,9 @@
             .item {
               & > a {
                 display: flex;
-                padding: 10px 15px;
+                box-sizing: border-box;
+                height: 50px;
+                padding: 6px 25px 6px 14px;
                 border-bottom: 1px solid #ccc;
                 .content {
                   flex: 1;
@@ -118,18 +126,36 @@
                   }
                 }
                 .state {
-                  flex: 0 0 50px;
+                  position: relative;
+                  flex: 0 0 70px;
+                  width: 70px;
+                  margin-top: 10px;
                   font-size: 12px;
                   text-align: right;
-                  &.default {
-                    color: #333;
+                  .icon {
+                    position: absolute;
+                    top:1px;
+                    right:-16px;
+                    font-size:12px;
+                    font-weight: 700;
+                    color:@textGray;
                   }
-                  &.on {
-                    color: #259b24;
+                  .badge {
+                    background: @redColor;
                   }
-                  &.warm {
-                    color: #ff9800;
+                  .text {
+                    line-height: 17px;
+                    &.default {
+                      color: #333;
+                    }
+                    &.on {
+                      color: #259b24;
+                    }
+                    &.warm {
+                      color: #ff9800;
+                    }
                   }
+
                 }
               }
             }

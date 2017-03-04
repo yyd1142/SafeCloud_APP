@@ -43,7 +43,7 @@
       </div>
       <div class="content-wrap">
         <!--<div class="title">-->
-          <!--<mt-field v-model="formData.title" placeholder="请输入隐患标题"></mt-field>-->
+        <!--<mt-field v-model="formData.title" placeholder="请输入隐患标题"></mt-field>-->
         <!--</div>-->
         <div class="desc">
           <mt-field v-model="formData.desc" placeholder="请输入隐患描述" type="textarea"></mt-field>
@@ -60,7 +60,7 @@
         </div>
       </div>
       <div class="footer-wrap">
-        <mt-button class="btn" size="large" @click="postHideDanger">提交隐患</mt-button>
+        <mt-button class="btn" size="large" :disabled="!formValid" @click="postHideDanger">提交隐患</mt-button>
       </div>
       <photo-preview photoId="1" ref="photoPreview"></photo-preview>
       <mt-actionsheet v-model="sheetShow" :actions="actions" cancelText="取消"></mt-actionsheet>
@@ -142,12 +142,12 @@
     }
     .content-wrap {
       margin-top: 10px;
-      background:#fff;
+      background: #fff;
       .desc {
-        margin-bottom:28px;
-        .mint-cell-value{
-          textarea{
-            min-height:100px;
+        margin-bottom: 28px;
+        .mint-cell-value {
+          textarea {
+            min-height: 100px;
           }
         }
       }
@@ -163,8 +163,8 @@
             min-height: 80px;
             margin-bottom: 10px;
             text-align: center;
-            >img{
-              width:90%;
+            > img {
+              width: 90%;
             }
             .btn {
               position: absolute;
@@ -200,7 +200,7 @@
     {id: 3, build: '平安国际中心大厦', floor: [-2, -1, 1, 2, 3, 4, 5, 6, 7]}
   ];
   let photo = ['./logo.png', './logo.png', './logo.png', './logo.png', './logo.png'];
-  import { Toast } from 'mint-ui';
+  import {Toast} from 'mint-ui';
   import PhotoPreview from '../../components/PhotoPreview/PhotoPreview.vue';
   export default{
     data() {
@@ -214,11 +214,12 @@
           build: [],
           floor: []
         },
+        formValid: false,
         formData: {
           build: "",
           floor: "",
           address: "",
-          title: '',
+//          title: '',
           desc: '',
           photoId: ''
         },
@@ -233,6 +234,12 @@
       ];
     },
     watch: {
+      formData: {
+        handler: function () {
+          this.formValidFn();
+        },
+        deep: true
+      },
       'formData.build': function (val) {
         this.location.forEach(item => {
           if (item.id === val) {
@@ -269,20 +276,40 @@
       photoPreview(){
         this.$refs.photoPreview.show();
       },
-      resetData(){
-        this.formData.build = "";
-        this.formData.floor = "";
+      resetData(type){
+        if (type == 'all') {
+          this.formValid = false;
+          let data = this.formData;
+          for (let key in data) {
+            data[key] = "";
+          }
+        } else {
+          this.formData.build = "";
+          this.formData.floor = "";
+        }
+      },
+      formValidFn(){
+        let data = this.formData;
+        for (let key in data) {
+          if (data[key] === "" && key != 'photoId') {
+            this.formValid = false;
+            return;
+          }
+        }
+        this.formValid = true;
       },
       postHideDanger(){
         Toast({
           message: '提交成功',
-          duration: 2000
+          duration: 1000
         });
         setTimeout(() => {
+          this.resetData('all');
           this.back();
-        }, 1500);
+        }, 100);
       },
       back(){
+        this.resetData('all');
         this.$emit('ctrl-page', 1);
       }
     },
