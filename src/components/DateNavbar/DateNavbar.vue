@@ -11,6 +11,7 @@
 
 <style lang="less" rel="stylesheet/less">
   .date-navbar {
+    box-shadow: 0 2px 6px 0 rgba(212,212,212,0.50);
     .mint-tab-item {
       padding-top: 5px;
       padding-bottom: 3px;

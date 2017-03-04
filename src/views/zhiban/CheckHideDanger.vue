@@ -7,6 +7,7 @@
       <div class="info-wrap">
         <mt-cell title="设备" value="暂无"></mt-cell>
         <mt-cell title="位置">
+          <i class="icon iconfont icon-prompt"></i>
           <span class="cell-btn" @click="popupShow=true">筛选</span>
         </mt-cell>
         <div v-if="formData.build">
@@ -23,14 +24,14 @@
               <!--<mt-radio title="建筑隐患" v-model="formData.build" :options="options.build"></mt-radio>-->
               <mt-button class="radio" :class="{'checked':formData.build==item.value}"
                          @click.native="formData.build=item.value"
-                         v-for="item in options.build" size="large"><span v-show="formData.build==item.value"></span>{{item.label}}
+                         v-for="item in options.build" size="large">
+                <span class="icon iconfont icon-success" v-show="formData.build==item.value"></span>{{item.label}}
               </mt-button>
             </div>
             <div class="radio-wrap floor-radio-wrap">
               <p class="title">楼层隐患</p>
               <mt-button class="radio" :class="{'checked':formData.floor==item}"
                          @click.native="formData.floor=item" v-for="item in options.floor">
-                <span v-show="formData.floor==item"></span>
                 {{item}}层
               </mt-button>
             </div>
@@ -69,12 +70,23 @@
 </template>
 
 <style lang="less" rel="stylesheet/less">
-  @import "../../app.less";
+  @import "../../config.less";
 
   .check-hide-danger {
     .info-wrap {
-      .cell-btn {
-        color: blue;
+      .mint-cell-wrapper {
+        padding: @cellPadding;
+        font-size: 14px;
+        .mint-cell-value {
+          color: @textLB;
+          .icon {
+            margin-right: 5px;
+            color: @textBlue;
+          }
+          .cell-btn {
+            color: @textBlue;
+          }
+        }
       }
     }
     .popup-wrap {
@@ -94,11 +106,21 @@
         }
         .radio-wrap {
           margin-bottom: 10px;
+          font-size: 12px;
           .radio {
-            margin-bottom: 10px;
+            margin-bottom: 6px;
+            height: 30px;
+            border-radius: @radiusS;
             &.checked {
               background: #fff;
-              border: 1px solid #0089dc;
+              border: 1px solid @textBlue;
+              color: @textBlue;
+            }
+            .mint-button-text {
+              font-size: 12px;
+              .icon {
+                margin-right: 4px;
+              }
             }
           }
           .title {
@@ -128,12 +150,16 @@
         .mint-button {
           flex: 1;
           width: 50%;
+          height: 39px;
+          border-radius: 0;
+          opacity: 0.73;
           &.reset {
+            border: 1px solid #EDEEF1;
             background: #fff;
-            border: 1px solid #0089dc;
+            color: @textBlue;
           }
           &.confirm {
-            background: #0089dc;
+            background: #0398FF;
             color: #fff;
           }
         }
@@ -141,8 +167,9 @@
 
     }
     .content-wrap {
-      margin-top: 10px;
-      background: #fff;
+      margin-top: 14px;
+      padding: 11px 0 16px;
+      background: @bgWhite;
       .desc {
         margin-bottom: 28px;
         .mint-cell-value {
@@ -162,9 +189,12 @@
             position: relative;
             min-height: 80px;
             margin-bottom: 10px;
+
             text-align: center;
             > img {
-              width: 90%;
+              width: 78px;
+              height: 78px;
+              border: 1px solid @borderGray;
             }
             .btn {
               position: absolute;
@@ -173,9 +203,8 @@
               width: 80px;
               height: 80px;
               line-height: 80px;
-              border: 1px dotted #999;
-              border-radius: 4px;
-              color: #999;
+              border: 1px solid @borderGray;
+              color: @borderGray;
             }
           }
         }
@@ -187,7 +216,7 @@
       bottom: 0;
       .btn {
         background: #f44336;
-        color: #fff;
+        color: @bgWhite;
       }
     }
   }
@@ -250,6 +279,8 @@
     },
     computed: {
       'showBuild': function () {
+
+
         let build = "";
         this.location.forEach(item => {
           if (this.formData.build == item.id) {
@@ -309,7 +340,6 @@
         }, 100);
       },
       back(){
-        this.resetData('all');
         this.$emit('ctrl-page', 1);
       }
     },
