@@ -8,7 +8,7 @@
     <div class="page-wrap" ref="wrapper" :style="{ height: wrapperHeight + 'px' }">
       <!--安全得分-->
       <div class="home-banner-wrap">
-        <img src="/static/banner.png"/>
+        <img src="/static/banner.png" />
       </div>
       <!--<div class="fen-wrap">
         <router-link to="/score">
@@ -26,46 +26,39 @@
         </li>
       </ul>
       <!--安全员功能区-->
+      <div class="today-todo-wrap">
+        <div class="main">
+          <div class="today-xuncha" @click="routerLink({url: '/xuncha_info/1'})">
+            <img class="today-image" src="/static/icons/home_xuncha.png" />
+            <span class="today-font">今日巡查</span>
+          </div>
+          <div class="today-zhiban" @click="routerLink({url: '/safer_zhiban_info/' + zhibanId})">
+            <img class="today-image" src="/static/icons/home_zhiban.png" />
+            <span class="today-font">今日值班</span>
+          </div>
+        </div>
+      </div>
       <ul class="actions-table-view" v-if="identity == 2">
-        <li class="actions-table-cell" :class=" index <= 1 ? actionClass : '' " v-for="(item, index) in aq_actions" @click="routerLink(item)">
+        <li class="actions-table-cell" v-for="(item, index) in aq_actions" @click="routerLink(item)">
           <i class="icon iconfont" :class="item.class"></i>
-          <span v-text="item.text"></span>
+          <span class="today-font" v-text="item.text"></span>
         </li>
       </ul>
-      <!--TAB-->
-      <mt-navbar v-model="selected">
-        <mt-tab-item id="1">新闻通知</mt-tab-item>
-        <mt-tab-item id="2">安全知识</mt-tab-item>
-        <mt-tab-item id="3">法律法规</mt-tab-item>
-        <mt-tab-item id="4">经典案例</mt-tab-item>
-      </mt-navbar>
-
-      <!-- tab-container -->
-      <mt-tab-container v-model="selected" swipeable>
-        <mt-tab-container-item id="1">
-          <ul class="page-infinite-list" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="50">
-            <li v-for="item in newsDatas" class="page-infinite-listitem">
-              <router-link :to="'/news_info/' + item">
-                <img src="/static/image-square.png"/>
-                <div class="news-title">中国消防协会召开六届二次理事会议</div>
-                <div class="news-date">2019-01-01</div>
-              </router-link>
-            </li>
-          </ul>
-          <p v-if="loading" class="page-infinite-loading">
-            <mt-spinner type="double-bounce"></mt-spinner>加载中...
-          </p>
-        </mt-tab-container-item>
-        <mt-tab-container-item id="2">
-          <mt-cell v-for="n in 4" :title="'安全知识 ' + n" />
-        </mt-tab-container-item>
-        <mt-tab-container-item id="3">
-          <mt-cell v-for="n in 6" :title="'法律法规 ' + n" />
-        </mt-tab-container-item>
-        <mt-tab-container-item id="4">
-          <mt-cell v-for="n in 6" :title="'经典案例 ' + n" />
-        </mt-tab-container-item>
-      </mt-tab-container>
+      <ul class="news-table-view">
+        <li class="news-table-cell" :class="item.selected" v-text="item.text" @click="tab(item, index)" v-for="(item, index) in newsTabs"></li>
+      </ul>
+      <ul class="page-infinite-list" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="50">
+        <li v-for="item in newsDatas" class="page-infinite-listitem">
+          <router-link :to="'/news_info/' + item">
+            <img src="/static/image-square.png" />
+            <div class="news-title">中国消防协会召开六届二次理事会议</div>
+            <div class="news-date">2019-01-01</div>
+          </router-link>
+        </li>
+      </ul>
+      <div class="page-infinite-loading" v-if="loading">
+        <mt-spinner class="page-loader" type="double-bounce"></mt-spinner>加载更多
+      </div>
     </div>
   </div>
 </template>

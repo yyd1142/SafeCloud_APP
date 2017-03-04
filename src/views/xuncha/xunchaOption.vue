@@ -11,9 +11,10 @@
                     <div class="xcop-wrap">
                         <i class="icon iconfont icon-prompt xcop-icon yali-icon"></i>
                         <span class="item">压力指示装置</span>
-                        <mt-switch class="xc-switch" v-model="isYali"></mt-switch>
-                         <span class="yh-fuhe-item great">符合</span>
-                         <!--<span class="yh-fuhe-item font-red">不符合</span>-->
+                        <div @click="switchOpen('yali', isYali)">
+                            <xuncha-switch ref="switchChild" class="xc-switch" :value="isYali"></xuncha-switch>
+                        </div>
+                        <span class="yh-fuhe-item great" :class="isYali ? 'great' : 'font-red'" v-text="isYali ? '符合' : '不符合'"></span>
                     </div>
                     <div class="xcop-wrap">
                         <i class="icon iconfont icon-prompt xcop-icon yali-icon"></i>
@@ -23,26 +24,27 @@
                 </li>
                 <li class="xcop-table-cell" v-for="(item, index) in xcopDatas">
                     <div class="xcop-wrap">
-                        <i class="icon iconfont" :class="item.icon" @click="open(item, index)"></i>
+                        <i class="icon iconfont" :class="item.show ? 'icon-xiangshangjiantou xcop-icon-ed' : 'icon-xiangxiajiantou xcop-icon'" @click="open(item, index)"></i>
                         <span class="item" v-text="item.text"></span>
-                        <mt-switch class="xc-switch" v-model="item.value"></mt-switch>
-                         <span class="yh-fuhe-item great" v-if="item.value">符合</span>
-                         <span class="yh-fuhe-item font-red" v-else>不符合</span>
+                        <div @click="switchOpen(index, item.value)">
+                            <xuncha-switch ref="switchChild" class="xc-switch" :value="item.value"></xuncha-switch>
+                        </div>
+                        <span class="yh-fuhe-item great" :class="item.value ? 'great' : 'font-red'" v-text="item.value ? '符合' : '不符合'"></span>
                     </div>
                     <transition name="fade">
                         <div class="xcop-item" v-if="item.show">
                             <textarea class="xcop-textarea" placeholder="请输入隐患描述..."></textarea>
-                            <ul class="xcop-photo-view">
-                                <li class="xcop-photo-cell" v-for="(obj, index) in item.url">
-                                    <div class="xcop-photo-item">
+                            <div class="xcop-photo-view">
+                                <div class="xcop-photo-cell" v-for="(obj, index) in item.url">
+                                    <span class="xcop-photo-item">
                                         <img src="/static/1.jpg" />
-                                    </div>
-                                </li>
-                                <li class="xcop-photo-cell" @click="upload(index)">
-                                    <div class="xcop-photo-item">
+                                    </span>
+                                </div>
+                                <div class="xcop-photo-cell" @click="upload(index)">
+                                    <span class="xcop-photo-item">
                                         <img src="/static/plus.png" />
-                                    </div>
-                                </li>
+                                    </span>
+                                </div>
                             </ul>
                         </div>
                     </transition>
@@ -55,73 +57,67 @@
 
 <script>
     import xunchaStatus from '../../components/xunchaStatusNavbar/xunchaStatus.vue';
+    import xunchaSwitch from '../../components/xunchaSwitch/switch.vue';
     export default {
         data() {
             return {
-                isYali: true,
+                isYali: false,
                 xcopDatas: [
                     {
                         value: true,
                         text: '基本配置',
                         show: false,
-                        icon: 'icon-xiangxiajiantou xcop-icon',
                         url: []
                     }, {
                         value: true,
                         text: '配置方式',
                         show: false,
-                        icon: 'icon-xiangxiajiantou xcop-icon',
                         url: []
                     }, {
                         value: true,
                         text: '环境状况',
                         show: false,
-                        icon: 'icon-xiangxiajiantou xcop-icon',
                         url: []
                     }, {
                         value: true,
                         text: '防护措施',
                         show: false,
-                        icon: 'icon-xiangxiajiantou xcop-icon',
                         url: []
                     }, {
                         value: true,
                         text: '铭牌标志',
                         show: false,
-                        icon: 'icon-xiangxiajiantou xcop-icon',
                         url: []
                     }, {
                         value: true,
                         text: '保险装置',
                         show: false,
-                        icon: 'icon-xiangxiajiantou xcop-icon',
                         url: []
                     }, {
                         value: true,
                         text: '灭火器筒体外观',
                         show: false,
-                        icon: 'icon-xiangxiajiantou xcop-icon',
                         url: []
                     }, {
                         value: true,
                         text: '喷射软管',
                         show: false,
-                        icon: 'icon-xiangxiajiantou xcop-icon',
                         url: []
                     }, {
                         value: true,
                         text: '其他零部件',
                         show: false,
-                        icon: 'icon-xiangxiajiantou xcop-icon',
                         url: []
                     }, {
                         value: false,
                         text: '使用状态',
                         show: true,
-                        icon: 'icon-xiangshangjiantou xcop-icon-ed',
                         url: []
                     }]
             }
+        },
+        mounted() {
+
         },
         methods: {
             back() {
@@ -129,19 +125,25 @@
             },
             open(item, index) {
                 if (item.show) {
-                    this.xcopDatas[index].icon = 'icon-xiangxiajiantou xcop-icon';
                     this.xcopDatas[index].show = false;
                 } else {
-                    this.xcopDatas[index].icon = 'icon-xiangshangjiantou xcop-icon-ed';
                     this.xcopDatas[index].show = true;
                 }
 
             },
+            switchOpen(index, value) {
+                if (index != 'yali') {
+                    this.xcopDatas[index].value = value ? false : true;
+                } else {
+                    this.isYali = this.isYali ? false : true;
+                }
+            },
             upload(index) {
-                this.xcopDatas[index].url = [1,2,3,4];
+                this.xcopDatas[index].url = [1, 2, 3];
             }
         },
         components: {
+            xunchaSwitch,
             xunchaStatus
         }
     }
