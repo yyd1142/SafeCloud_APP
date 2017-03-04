@@ -4,3 +4,35 @@
 @warningColor: #F7BA2A;
 @primaryColor: #2cabff;
 @redColor: #FF7F5B;
+
+@textBlue: #0398FF;
+@textGray:#A0A0A0;
+
+@bgBlue:#299FFF;
+@bgGray:#F2F2F2;
+
+//函数
+//0.5px边框
+.border-top(@color) {
+  .border-init(0);
+}
+
+.border-btm(@color) {
+  .border-init(200%);
+}
+
+.border-init(@height) {
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200%;
+    height: @height;
+    box-sizing: border-box;
+    transform: scale(.5, .5);
+    transform-origin: 0 0;
+    border-bottom: 1px solid @color;
+  }
+}

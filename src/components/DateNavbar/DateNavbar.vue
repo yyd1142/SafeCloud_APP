@@ -14,9 +14,9 @@
     .mint-tab-item {
       padding-top: 5px;
       padding-bottom: 3px;
-      &.is-selected{
-        .day,.date{
-          color:#0398FF;
+      &.is-selected {
+        .day, .date {
+          color: #0398FF;
         }
       }
       .day {
@@ -51,55 +51,65 @@
     watch: {
       selected: function (val) {
         this.selValue(val);
+        this.getDate(this.dateList[val - 1].value);
+        this.selected = '3';
       }
     },
     mounted() {
       this.getDate();
     },
     methods: {
-      getDate(){
+      getDate(_date){
         let dateList = [];
-        let today = new Date();
-        let todayDate = today.getDate();
+        let selDate = null;
+        if (_date) {
+          selDate = _date;
+        } else {
+          selDate = new Date();
+        }
+        let selDateDate = selDate.getDate();
         for (let i = -2; i < 3; i++) {
-          let date = new Date(today);
-          date.setDate(todayDate + i);
+          let date = new Date(selDate);
+          date.setDate(selDateDate + i);
           dateList.push(date);
         }
         this.dateList = dateList.map((item, key) => {
           return this.translateDate(item);
         });
-        this.dateList[2].day = "今天";
-        console.log(this.dateList);
       },
-      translateDate(Date){
-        let day = Date.getDay();
-        switch (day) {
-          case 1:
-            day = '周一';
-            break;
-          case 2:
-            day = '周二';
-            break;
-          case 3:
-            day = '周三';
-            break;
-          case 4:
-            day = '周四';
-            break;
-          case 5:
-            day = '周五';
-            break;
-          case 6:
-            day = '周六';
-            break;
-          case 0:
-            day = '周日';
-            break;
+      translateDate(_date){
+        let day = _date.getDay();
+        let today = new Date();
+        if (_date.getFullYear() === today.getFullYear() && _date.getMonth() === today.getMonth() && _date.getDate() === today.getDate()) {
+          day = '今天';
+        } else {
+          switch (day) {
+            case 1:
+              day = '周一';
+              break;
+            case 2:
+              day = '周二';
+              break;
+            case 3:
+              day = '周三';
+              break;
+            case 4:
+              day = '周四';
+              break;
+            case 5:
+              day = '周五';
+              break;
+            case 6:
+              day = '周六';
+              break;
+            case 0:
+              day = '周日';
+              break;
+          }
         }
-        let date = `${Date.getMonth() + 1}月${Date.getDate()}日`;
+        let date = `${_date.getMonth() + 1}月${_date.getDate()}日`;
         return {
-          value: Date,
+          value: _date,
           day: day,
           date: date
         };

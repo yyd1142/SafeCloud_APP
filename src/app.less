@@ -30,31 +30,6 @@ ul, li {
   position: relative;
 }
 
-//0.5px边框
-.border-top(@color) {
-  .border-init(0);
-}
-
-.border-btm(@color) {
-  .border-init(200%);
-}
-
-.border-init(@height) {
-  position: relative;
-  &:after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 200%;
-    height: @height;
-    box-sizing: border-box;
-    transform: scale(.5, .5);
-    transform-origin: 0 0;
-    border-bottom: 1px solid @color;
-  }
-}
-
 // 过渡效果
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
