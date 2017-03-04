@@ -8,5 +8,6 @@ export default {
   //新闻列表
   getNewList: httpGet('news/list'),
   //任务总表-管理员
-  adminMissionList:httpGet('')
+  adminMissionList:httpGet(''),
+  getUnitInfo: httpGet('dwInfo')
 }
