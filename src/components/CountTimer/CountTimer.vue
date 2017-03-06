@@ -74,7 +74,7 @@
           m = 0;
           h++;
         }
-        this.timing.text = `${h}时${m}分${s}秒`;
+        this.timing.text = `${h}小时${m}分${s}秒`;
         this.timing.second = s;
         this.timing.minute = m;
         this.timing.hour = h;

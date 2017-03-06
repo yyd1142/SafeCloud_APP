@@ -5,13 +5,7 @@
     </mt-header>
     <div class="page-wrap safer-mission-page-wrap">
       <date-navbar :selected="selected" @sel="getSel"></date-navbar>
-      <mt-tab-container v-model="selected">
-        <mt-tab-container-item id="1">
-          <mt-cell v-for="n in 3" :title="'重要事项 ' + n"/>
-        </mt-tab-container-item>
-        <mt-tab-container-item id="2">
-          <mt-cell v-for="n in 2" :title="'重要事项 ' + n"/>
-        </mt-tab-container-item>
+      <mt-tab-container class="container" v-model="selected">
         <mt-tab-container-item id="3">
           <ul class="mission-table">
             <li class="cell">
@@ -59,8 +53,13 @@
                           开始时间：{{item.time}}
                         </div>
                       </div>
-                      <div class="state" :class="{'default':item.state==1||item.state==3,'on':item.state==2}">
-                        {{item.stateName}}
+                      <div class="state">
+                        <!--<mt-badge class="badge" size="small">28</mt-badge>-->
+                        <span class="text"
+                              :class="{'on':item.state==2}">
+                          {{item.stateName}}
+                        </span>
+                        <i class="icon iconfont icon-xiangyoujiantou"></i>
                       </div>
                     </router-link>
                   </li>
@@ -68,9 +67,6 @@
               </div>
             </li>
           </ul>
-        </mt-tab-container-item>
-        <mt-tab-container-item id="4">
-          <mt-cell v-for="n in 4" :title="'重要事项 ' + n"/>
         </mt-tab-container-item>
         <mt-tab-container-item id="5">
           <mt-cell v-for="n in 5" :title="'重要事项 ' + n"/>
@@ -84,78 +80,80 @@
   @import "../../config.less";
 
   .safer-mission-page-wrap {
-    .mission-table {
-      width: 100%;
-      padding: 0;
-      margin: 10px 0 0 0;
-      list-style: none;
-      .cell {
-        position: relative;
-        border-bottom: 1px solid #ddd;
-        .type {
-          width: 100%;
-          height: 30px;
-          line-height: 30px;
-          padding-left: 5px;
-          font-size: 18px;
-          background: @bgGray;
-          color: @textBlue;
-        }
-        .list-wrap {
-          .list {
-            padding: 0;
-            margin: 0;
-            .item {
-              & > a {
-                display: flex;
-                box-sizing: border-box;
-                height: 50px;
-                padding: 6px 25px 6px 14px;
-                border-bottom: 1px solid #ccc;
-                .content {
-                  flex: 1;
-                  .title {
-                    line-height: 20px;
-                    font-size: 14px;
-                    color: #232323;
+    .container {
+      margin-top: 14px;
+      .border-top(@borderGray);
+      .mission-table {
+        width: 100%;
+        padding: 0;
+        list-style: none;
+        .cell {
+          position: relative;
+          border-bottom: 1px solid #ddd;
+          .type {
+            padding-left: 14px;
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            font-size: 14px;
+            background: @bgGray;
+            color: @textBlue;
+          }
+          .list-wrap {
+            background: @bgWhite;
+            .list {
+              padding: 0;
+              margin: 0;
+              .item {
+                & > a {
+                  display: flex;
+                  box-sizing: border-box;
+                  height: 50px;
+                  padding: 6px 25px 6px 14px;
+                  border-bottom: 1px solid #ccc;
+                  .content {
+                    flex: 1;
+                    .title {
+                      line-height: 20px;
+                      font-size: 14px;
+                    }
+                    .desc {
+                      line-height: 17px;
+                      font-size: 12px;
+                      color: @textGray;
+                    }
                   }
-                  .desc {
-                    line-height: 17px;
+                  .state {
+                    position: relative;
+                    flex: 0 0 70px;
+                    width: 70px;
+                    margin-top: 10px;
                     font-size: 12px;
-                    color: #A0A0A0;
-                  }
-                }
-                .state {
-                  position: relative;
-                  flex: 0 0 70px;
-                  width: 70px;
-                  margin-top: 10px;
-                  font-size: 12px;
-                  text-align: right;
-                  .icon {
-                    position: absolute;
-                    top:1px;
-                    right:-16px;
-                    font-size:12px;
-                    font-weight: 700;
-                    color:@textGray;
-                  }
-                  .badge {
-                    background: @redColor;
-                  }
-                  .text {
-                    line-height: 17px;
-                    &.default {
-                      color: #333;
+                    text-align: right;
+                    .icon {
+                      position: absolute;
+                      top: 1px;
+                      right: -16px;
+                      font-size: 12px;
+                      font-weight: 700;
+                      color: @textGray;
                     }
-                    &.on {
-                      color: #259b24;
+                    .badge {
+                      background: @redColor;
                     }
-                    &.warm {
-                      color: #ff9800;
+                    .text {
+                      line-height: 17px;
+                      &.default {
+                      }
+                      &.on {
+                        color: @successColor;
+                      }
+                      &.warm {
+                        color: @warningColor;
+                      }
                     }
-                  }
 
+                  }
                 }
               }
             }
@@ -163,6 +161,7 @@
         }
       }
     }
+
   }
 
 

@@ -30,9 +30,24 @@
   .address-wrap {
     .navbar-wrap {
       top: 40px;
+      .mint-tab-item {
+        padding: 10px;
+        height: 20px;
+        font-size: 14px;
+        .mint-tab-item-label {
+          line-height: 20px;
+        }
+      }
     }
     .address-list {
-      margin-top: 46px;
+      margin-top: 43px;
+      .mint-indexsection {
+        .mint-indexsection-index {
+          padding:4px 0 3px 14px;
+          height: 17px;
+          line-height:17px;
+        }
+      }
       .mint-cell-title {
         flex: 0 0 90px;
       }
@@ -58,36 +73,6 @@
 
   .mint-swipe-item {
     line-height: 200px;
-  }
-
-  .slide1 {
-    background-color: #0089dc;
-    color: #fff;
-  }
-
-  .slide2 {
-    background-color: #ffd705;
-    color: #000;
-  }
-
-  .slide3 {
-    background-color: #ff2d4b;
-    color: #fff;
-  }
-
-  .test-wrap {
-    width: 100%;
-    margin-top: -20px;
-    height: 50px;
-    line-height: 50px;
-    border-bottom: 1px solid #ddd;
-    padding: 0 10px;
-  }
-
-  .test-item {
-    width: auto;
-    text-align: left;
-    margin-right: auto;
   }
 
 </style>
