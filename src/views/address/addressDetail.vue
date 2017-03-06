@@ -4,159 +4,128 @@
       <router-link to="/enter?name=address" slot="left">
         <mt-button class="header-item" icon="back">返回</mt-button>
       </router-link>
+      <router-link :to="'/add_inside_contact/'+$route.params.pid" slot="right">
+        <mt-button class="header-item">编辑</mt-button>
+      </router-link>
     </mt-header>
     <div class="page-wrap address-detail-wrap">
-      <div class="detail-card">
-        <mt-cell :title="addressDetail.name" :value="addressDetail.team"></mt-cell>
-        <mt-cell :title="addressDetail.tel"></mt-cell>
-        <mt-cell :title="addressDetail.team"></mt-cell>
+      <div class="card-wrap">
+        <div class="avatar">
+          <img src="./logo.png">
+        </div>
+        <div class="name">{{contactDetail.name}}</div>
+        <div class="phone">{{contactDetail.phone}}</div>
         <div class="btn-wrap">
-          <div class="btn">
-            <i class="icon iconfont icon-shuffling-banner"></i>
+          <div class="btn fl">
+            <i class="icon iconfont icon-xiaoxizhongxin"></i>
           </div>
-          <div class="btn">
+          <div class="btn fr">
             <i class="icon iconfont icon-phone"></i>
           </div>
         </div>
       </div>
-      <div class="edit-wrap">
-        <router-link :to="'/add_inside_contact/'+$route.params.pid">
-          <mt-button type="default">编辑</mt-button>
-        </router-link>
-        <mt-button type="default">删除</mt-button>
+      <div class="info-wrap">
+        <mt-cell :title="contactDetail.cpy">
+          <span slot="icon" class="icon iconfont icon-cart"></span>
+        </mt-cell>
+        <mt-cell :title="contactDetail.team">
+          <span slot="icon" class="icon iconfont icon-browse"></span>
+        </mt-cell>
       </div>
     </div>
   </div>
 </template>
 
 <style lang="less" rel="stylesheet/less">
+  @import "../../config.less";
+
   .address-detail-wrap {
     position: relative;
     min-height: 400px;
-    .detail-card {
+    .card-wrap {
+      position: absolute;
+      left: 50%;
+      top: 32px;
+      transform: translate(-50%, 0);
+      width: 112px;
+      text-align: center;
+      .avatar {
+        width: 84px;
+        height: 84px;
+        margin: 0 14px 8px;
+        border-radius: 50%;
+        > img {
+          width: 100%;
+        }
+      }
+      .name {
+        font-size: 26px;
+        line-height: 37px;
+      }
+      .phone {
+        font-size: 16px;
+        line-height: 22px;
+      }
       .btn-wrap {
-        display: flex;
-        border: 1px solid #ccc;
+        margin-top: 18px;
         .btn {
-          flex: 1;
-          padding: 20px 0;
-          text-align: center;
-          & + .btn {
-            border-left: 1px solid #ccc;
-          }
+          width: 38px;
+          height: 38px;
+          padding: 10px;
+          border-radius: 50%;
+          background: @borderBlue;
           .icon {
-            font-size: 25px;
+            font-size: 18px;
+            color: #fff;
           }
         }
       }
     }
-    .edit-wrap {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translate(-50%, 0);
+    .info-wrap {
+      margin-top: 282px;
+      .mint-cell {
+        min-height: 45px;
+        .mint-cell-wrapper {
+          padding: @cellPadding;
+          .icon {
+            display: inline-block;
+            width: 50px;
+            font-size: 22px;
+            color: @bgBlue;
+            &.icon-cart{
+              position: relative;
+              top:5px;
+            }
+          }
+          .mint-cell-text {
+            line-height: 27px;
+          }
+        }
+      }
     }
   }
 </style>
 
 <script>
-  var NAMES = [
-    {
-      team: '保安处1队', member: [
-      {
-        id: 1,
-        name: '阿凡达',
-        tel: '153 2325 2354'
-      },
-      {
-        id: 2,
-        name: '阿里山',
-        tel: '153 2325 2354'
-      }
-    ]
-    },
-    {
-      team: '保安处2队', member: [
-      {
-        id: 3,
-        name: '陈锐',
-        tel: '153 2325 2354'
-      },
-      {
-        id: 4,
-        name: '曹师傅',
-        tel: '153 2325 2354'
-      }
-    ]
-    },
-    {
-      team: '志愿消防队', member: [
-      {
-        id: 5,
-        name: '付师傅',
-        tel: '153 2325 2354'
-      },
-      {
-        id: 6,
-        name: '霍元甲',
-        tel: '153 2325 2354'
-      },
-      {
-        id: 7,
-        name: '韩寒',
-        tel: '153 2325 2354'
-      },
-      {
-        id: 8,
-        name: '范经理',
-        tel: '153 2325 2354'
-      }
-    ]
-    },
-    {
-      team: '消防控制室', member: [
-      {
-        id: 9,
-        name: '付师傅',
-        tel: '153 2325 2354'
-      },
-      {
-        id: 10,
-        name: '霍元甲',
-        tel: '153 2325 2354'
-      },
-      {
-        id: 11,
-        name: '韩寒',
-        tel: '153 2325 2354'
-      },
-      {
-        id: 12,
-        name: '范经理',
-        tel: '153 2325 2354'
-      }
-    ]
-    }
-  ];
+  let nameDetail = {
+    name: '黄队长',
+    phone: '18825220050',
+    cpy: '猫空科技有限公司',
+    team: '保卫处一队'
+  };
   export default{
     data() {
       return {
-        addressDetail: {}
+        contactId: this.$route.params.pid,
+        contactDetail: {}
       }
     },
     mounted() {
-      this.getAddressData();
+      this.getContactData();
     },
     methods: {
-      getAddressData() {
-        NAMES.forEach(teamData => {
-          teamData.member.forEach(data => {
-            if (data.id == this.$route.params.pid) {
-              this.addressDetail = data;
-              this.addressDetail.team = teamData.team;
-            }
-          })
-        });
+      getContactData() {
+        this.contactDetail = nameDetail;
       }
     }
   }
