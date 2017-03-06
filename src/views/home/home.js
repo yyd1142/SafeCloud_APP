@@ -55,10 +55,11 @@ export default {
     safeScore() {
       let self = this;
       let params = {
-        m: 'info',
-          groupId: 'QYWX000031'
+        q: 'language:javascript',
+        sort: 'stars',
+        order: 'desc'
       };
-      Api.getUnitInfo(params).then(result => {
+      Api.getJSON(params).then(result => {
         console.log(result)
           // if (!result) return false
           // if (result.code == 0) {
