@@ -1,30 +1,34 @@
-import reqwest from 'reqwest'
+/**
+ * Created by enjoyzhou on 17-2-16.
+ * https://github.com/mzabriskie/axios#request-config
+ */
 
-// server code
-const CODE_SUCCESS = 0
-const CODE_FAIL = -1
+import Axios from 'axios'
+import Conf from './conf'
 
-const http = (cmd, method) => {
-  return (data) => {
-    return reqwest({
-      url: `http://10.0.1.11:3000/${cmd}`,
-      method,
-      data: data,
-      timeout: 8000,
-      crossOrigin: true,
-      withCredentials: true
-    }).then(response => {
-      return response;
-    }, (err, msg) => {
-      console.log(err, msg)
+const Http = (path, method, domain) => {
+  return (data, params) => {
+    return Axios({
+      method: method,
+      url: (domain || Conf.domain) + '' + path,
+      data: method === 'post' ? data : null,
+      params: method === 'get' ? data : params
     })
+      .then(function (response) {
+        // console.log(response);
+        return response.data
+      })
+      .catch(function (error) {
+        console.log(error);
+        return error
+      });
   }
 }
 
-export function httpGet(cmd) {
-  return http(cmd, 'get')
+export function httpGet(path, domain) {
+  return Http(path, 'get', domain)
 }
 
-export function httpPost(cmd) {
-  return http(cmd, 'post')
+export function httpPost(path, domain) {
+  return Http(path, 'post', domain)
 }

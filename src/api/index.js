@@ -1,13 +1,10 @@
+/**
+ * Created by enjoyzhou on 17-2-16.
+ */
 import { httpGet, httpPost } from './requestService'
+import Conf from './conf'
 
 export default {
-  // 报警记录
-  alarmRecordsData: httpGet('alarmRecords'),
-  // 设备列表
-  devicesListData: httpGet('devices'),
-  //新闻列表
-  getNewList: httpGet('news/list'),
-  //任务总表-管理员
-  adminMissionList:httpGet(''),
-  getUnitInfo: httpGet('dwInfo')
+  getJSON: httpGet('/repositories'),
+  postJSON: httpPost('/api/home')
 }
